@@ -72,6 +72,8 @@ class DailyStats(db.Model):
 
 # Kullanıcı modeli
 class User(UserMixin, db.Model):
+    __tablename__ = 'users'  # Tablo adını açıkça belirt
+    
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(120), nullable=False)
