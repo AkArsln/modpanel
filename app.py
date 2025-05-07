@@ -51,10 +51,7 @@ def init_db():
         except Exception as e:
             print(f"Veritabanı tabloları oluşturulurken hata: {str(e)}")
 
-# Uygulama başlatıldığında veritabanını oluştur
-@app.before_first_request
-def before_first_request():
-    init_db()
+init_db()  # <-- Bunu burada çağır!
 
 # Proje modeli
 class Project(db.Model):
@@ -2965,14 +2962,5 @@ def beloops_admin_session():
     return render_template('admin_beloops_admin_session.html', session=session)
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-        # Admin kullanıcısını oluştur
-        admin = User.query.filter_by(username='admin').first()
-        if not admin:
-            admin = User(username='admin', is_admin=True)
-            admin.set_password('admin')
-            db.session.add(admin)
-            db.session.commit()
-            print("Admin kullanıcısı oluşturuldu!")
+    init_db()
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000))) 
