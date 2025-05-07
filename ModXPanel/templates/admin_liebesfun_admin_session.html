@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Liebesfun Admin PHPSESSID Ayarları</h2>
+    
+    <div class="card mt-4">
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="phpessid">PHPSESSID</label>
+                    <input type="text" class="form-control" id="phpessid" name="phpessid" 
+                           value="{{ session.phpessid if session else '' }}" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 

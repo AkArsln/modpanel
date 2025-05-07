@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Ana Sayfa{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center mt-5">
+            <h1 class="display-4 mb-4">ModXPanel'e Hoş Geldiniz</h1>
+            <p class="lead mb-4">Güvenli ve kullanıcı dostu yönetim paneli</p>
+            
+            {% if not current_user.is_authenticated %}
+            <div class="d-grid gap-2 col-md-6 mx-auto">
+                <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                </a>
+            </div>
+            {% else %}
+            <div class="d-grid gap-2 col-md-6 mx-auto">
+                {% if current_user.is_admin %}
+                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-tachometer-alt"></i> Admin Paneline Git
+                </a>
+                {% else %}
+                <a href="{{ url_for('user_dashboard') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-user"></i> Kullanıcı Paneline Git
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

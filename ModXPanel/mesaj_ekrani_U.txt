@@ -1,0 +1,25 @@
+<table cellpadding='0' cellspacing='0' style='width:100%' border='0'>
+    <tr>
+        <td>
+            <div id='mes_13146639' style='float:left;width:85%;'>
+                <div style='border:2px #555 solid;border-radius:5px;margin:2px;padding:5px;background:#eee;'>
+                    <table cellpadding='0' cellspacing='0' width='100%'>
+                        <tr style='height:20px;'>
+                            <td style='width:30px;'>
+                                <span class='fa fa-envelope' style='font-size:18px;'></span>
+                            </td>
+                            <td style='width:150px;text-align:left;'>
+                                02.05.25 21:08 <span class='fa fa-check-double' style='color:#48f'></span>
+                            </td>
+                            <td style='text-align:right'>
+                                <span style='font-size:10px;'></span>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <div id='body_13146639'>Hey prinzessin 😍🤩 Ich bin Hanifi aus Algerien und lebe hier in algerien Noch nie bin in Deutschland bevor Weil deise site es IST nicht international also in deutcher Wohnung Ich Habe geschriebe.bin ich  single Und Kein kinder und suche eine netten Frau das klaar  liebe uberrach mich immer🤗. Woher kommst du denn Und was suchst du hier 🤔???? Du Bist Sehr attraktiv ...Dank Prinzessin Noch nie sehen bevor🤣🤣🤣🤣</div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Momaily Admin PHPSESSID Ayarları{% endblock %}
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+    <h3>Momaily Admin PHPSESSID Ayarları</h3>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="phpessid" class="form-label">Momaily AxAdmin PHPSESSID</label>
+            <input type="text" class="form-control" id="phpessid" name="phpessid" value="{{ session.phpessid if session else '' }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+    {% if session %}
+    <div class="alert alert-info mt-3">
+        <b>Mevcut PHPSESSID:</b> <code>{{ session.phpessid }}</code><br>
+        <small>Son güncelleme: {{ session.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 

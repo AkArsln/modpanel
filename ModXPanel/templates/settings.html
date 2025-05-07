@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Ayarlar{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Ayarlar</h2>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Proje Ayarları</h5>
+                    <!-- Momaily Ayarları -->
+                    <div class="mb-4">
+                        <h6 class="mb-3">Momaily</h6>
+                        <div class="mb-3">
+                            <label class="form-label">Mevcut PHPESSID'ler</label>
+                            <ul class="list-group mb-2">
+                                {% for sess in momaily_sessions %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><b>{{ sess.moderator_name or 'İsimsiz' }}</b> <span class="text-muted">({{ sess.phpessid }})</span></span>
+                                    <form method="POST" action="{{ url_for('delete_phpessid') }}" style="display:inline;">
+                                        <input type="hidden" name="session_id" value="{{ sess.id }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                                    </form>
+                                </li>
+                                {% else %}
+                                <li class="list-group-item text-muted">Kayıtlı PHPESSID yok.</li>
+                                {% endfor %}
+                            </ul>
+                            <form method="POST" action="{{ url_for('add_phpessid') }}" class="d-flex gap-2">
+                                <input type="hidden" name="project" value="momaily">
+                                <input type="text" class="form-control" name="phpessid" placeholder="Yeni Momaily PHPESSID" required>
+                                <input type="text" class="form-control" name="moderator_name" placeholder="Moderatör İsmi (örn: AkA-Kaan)" required>
+                                <button type="submit" class="btn btn-success">Ekle</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Liebesfun Ayarları -->
+                    <div class="mb-4">
+                        <h6 class="mb-3">Liebesfun</h6>
+                        <div class="mb-3">
+                            <label class="form-label">Mevcut PHPESSID'ler</label>
+                            <ul class="list-group mb-2">
+                                {% for sess in liebesfun_sessions %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><b>{{ sess.moderator_name or 'İsimsiz' }}</b> <span class="text-muted">({{ sess.phpessid }})</span></span>
+                                    <form method="POST" action="{{ url_for('delete_phpessid') }}" style="display:inline;">
+                                        <input type="hidden" name="session_id" value="{{ sess.id }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                                    </form>
+                                </li>
+                                {% else %}
+                                <li class="list-group-item text-muted">Kayıtlı PHPESSID yok.</li>
+                                {% endfor %}
+                            </ul>
+                            <form method="POST" action="{{ url_for('add_phpessid') }}" class="d-flex gap-2">
+                                <input type="hidden" name="project" value="liebesfun">
+                                <input type="text" class="form-control" name="phpessid" placeholder="Yeni Liebesfun PHPESSID" required>
+                                <input type="text" class="form-control" name="moderator_name" placeholder="Moderatör İsmi (örn: AkA-Bebeto)" required>
+                                <button type="submit" class="btn btn-success">Ekle</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Beloops Ayarları -->
+                    <div class="mb-4">
+                        <h6 class="mb-3">Beloops</h6>
+                        <div class="mb-3">
+                            <label class="form-label">Mevcut PHPESSID'ler</label>
+                            <ul class="list-group mb-2">
+                                {% for sess in beloops_sessions %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><b>{{ sess.moderator_name or 'İsimsiz' }}</b> <span class="text-muted">({{ sess.phpessid }})</span></span>
+                                    <form method="POST" action="{{ url_for('delete_phpessid') }}" style="display:inline;">
+                                        <input type="hidden" name="session_id" value="{{ sess.id }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                                    </form>
+                                </li>
+                                {% else %}
+                                <li class="list-group-item text-muted">Kayıtlı PHPESSID yok.</li>
+                                {% endfor %}
+                            </ul>
+                            <form method="POST" action="{{ url_for('add_phpessid') }}" class="d-flex gap-2">
+                                <input type="hidden" name="project" value="beloops">
+                                <input type="text" class="form-control" name="phpessid" placeholder="Yeni Beloops PHPESSID" required>
+                                <input type="text" class="form-control" name="moderator_name" placeholder="Moderatör İsmi (örn: AkA-Hasan)" required>
+                                <button type="submit" class="btn btn-success">Ekle</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Yardım</h5>
+                    <p class="card-text">PHPESSID'yi nasıl bulacağınızı bilmiyor musunuz?</p>
+                    <ol class="mb-0">
+                        <li>İlgili siteye giriş yapın</li>
+                        <li>Tarayıcınızda F12 tuşuna basın</li>
+                        <li>Application/Storage sekmesine gidin</li>
+                        <li>Cookies bölümünden PHPESSID'yi bulun</li>
+                        <li>Değeri kopyalayıp buraya yapıştırın</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

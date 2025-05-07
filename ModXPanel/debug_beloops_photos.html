@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>beloops</title>
+    <link type="text/css" rel="stylesheet" href="bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap">
+    <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link type="text/css" rel="stylesheet" href="../css/jquery-ui.min.css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/popper.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="../fancybox/jquery.fancybox.css" media="screen">
+	<script type="text/javascript" src="../fancybox/jquery.fancybox.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<link rel="icon" type="image/x-icon" href="../favicon.ico">
+	<link rel="apple-touch-icon" href="../favicon57.png" sizes="57x57">
+	<link rel="apple-touch-icon" href="../favicon60.png" sizes="60x60">
+	<link rel="apple-touch-icon" href="../favicon72.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="../favicon76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="../favicon114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="../favicon120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="../favicon128.png" sizes="128x128">
+	<link rel="apple-touch-icon" href="../favicon144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="../favicon152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="../favicon180.png" sizes="180x180">
+	<link rel="apple-touch-icon" href="../favicon192.png">
+	<link rel="icon" type="image/png" href="../favicon16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="../favicon32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="../favicon96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="../favicon160.png" sizes="160x160">
+	<link rel="icon" type="image/png" href="../favicon192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="../favicon196.png" sizes="196x196">
+	<link rel="manifest" href="manifest.json">
+	<meta name="msapplication-TileImage" content="../favicon144.png">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-navbutton-color" content="#d52b1e">
+	<meta name="msapplication-square70x70logo" content="../favicon70.png">
+	<meta name="msapplication-square144x144logo" content="../favicon144.png">
+	<meta name="msapplication-square150x150logo" content="../favicon150.png">
+  </head>
+  <body>
+  <div id='msgnotice' class="notifications" style='display:none;z-index:50;' ></div>
+	<div class="flirtbooster-overlay" id="error">
+		<div class="wrap">
+			<div class="box">
+				<div class="col-md-12 flirtbooster-text">
+				<!-- div class="close" onclick="$('#error').fadeOut();">x</div -->
+				<div id="errormessage" style='text-align:center;'></div>
+				<br /><br />
+				<button class="btn" style="margin:0 auto;width:auto;display:block;" onclick="$('#error').fadeOut();">close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class='hidden-sm hidden-xs' style='font-size:24px;text-align:left;position:relative;width:100%;padding-top:2px;padding-bottom:2px;background:#080;color:#eee;font-weight:bold;'>
+	<div id='nav_desk' style='display:inline-block;'><a title='wechsel zum Team' href='team_base.php'><span class='fa fa-exchange-alt' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a><a title='Home' href='privat_base.php'><span class='fa fa-home' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a><a title='Favoriten' href='privat_favoriten.php'><span class='fa fa-star' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a><a title='Fake erstl.' href='privat_new_user.php'><span class='fa fa-user-plus' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Meine Fakes' href='privat_myprofile.php'><span class='fa fa-user' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Diafakes' href='privat_diafake.php'><span class='fa fa-user-secret' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Meine Kunden' href='privat_meinekunden.php'><span class='fa fa-blind' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Aktive Dias' href='privat_dialoge.php'><span class='fa fa-comments' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Wartezimmer' href='privat_wartezimmer.php'><span class='fa fa-hourglass-half' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Schwarze Brett' href='privat_brett.php'><span class='fa fa-clipboard' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a><a title='Tickets' href='privat_ticket.php'><span class='fa fa-tag' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+	<a title='' alt='' href='privat_setup.php'><span class='fa fa-cog' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+	<a title='Logout' href='logout.php'><span class='fa fa-sign-out-alt' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a></div>
+	<span style='float:right;color:#ff9900;font-weight:normal;font-size:18px;'><span title='Coins' class='fa fa-database' style='font-size:24px;color:#eee;margin:2px;'></span> <span style='font-size:18px;'>(13:17)</span>: <a href='privat_umsatz.php' style='color:#eee;'>28 | 61</a> </span></div><div id='nav_mobile' class='visible-sm visible-xs' style='font-size:18px;text-align:left;position:relative;width:100%;padding-top:2px;padding-bottom:2px;background:#080;color:#eee;font-weight:bold;'>
+	<a href='javascript:void(0);' onclick="temp=document.getElementById('nav_desk').innerHTML;temp=temp.replace(/#eee/g,'#333');document.getElementById('errormessage').innerHTML=temp.replace(/2px/g,'8px');$('#error').fadeIn();"><span class='fa fa-bars' style='font-size:18px;color:#eee;margin:2px;'></span></a>
+	<span style='float:right;color:#ff9900;font-weight:normal;font-size:18px;'>
+	<span title='Coins' class='fa fa-database' style='font-size:18px;color:#eee;margin:2px;'></span> <span style='font-size:18px;'>(13:17)</span>: <a href='privat_umsatz.php' style='color:#eee;'>28 | 61</a> </span></div><audio id='msgplay'><source id='msgplay_src' src='../media/d1.mp3' type='audio/mpeg'></audio>
+		<div id='npm' style='display:none;z-index:50;width:300px;height:100px;position:fixed;bottom:10px;right:10px;background-color: rgba(0, 0, 0, 0.6);border:2px #000 solid;border-radius:10px;box-shadow:2px 2px 5px 5px #888;'></div>
+		<script type='text/javascript'><!--
+		function msgsound(filename)
+		{
+			document.getElementById('msgplay_src').src = '../media/'+filename;
+			document.getElementById('msgplay').load();
+			document.getElementById('msgplay').play();
+		}
+
+		var msgnewid=0;
+
+		function msgchecknew()
+		{
+			$.ajax
+			({
+				url:		'privat_ajax_sound.php?id='+msgnewid,
+				method: 	'GET',
+				data:		'',
+				success: 	function(transport)
+				{
+					jdskhfds=transport.split('|');
+					if (jdskhfds[0].match(/success/))
+					{
+						if((jdskhfds[1]*1)==1 && msgnewid==0)
+						{
+							msgsound('d1.mp3');
+							document.getElementById('npm').innerHTML="<div onclick=\"window.location.href='"+jdskhfds[3]+"'\" style='cursor:pointer;text-align:center;width:100%;height:100%;font-size:24px;color:#fff;'><b>POWERCHAT</b><br />("+jdskhfds[2]+")</div>";
+							document.getElementById('npm').style.display='block';
+							msgnewid=1;
+						}
+					}
+					if(msgnewid==0)window.setTimeout('msgchecknew()',30000);
+				}
+			});		
+			
+		}
+		window.setTimeout('msgchecknew()',60000);
+		//--></script><div class='container' style='width:100%;'><br ><br />
+	<input type='button' value='Zurück' onclick="window.location.href='privat_postfach.php?p=644529&id=597996&action=read'" />
+	<br /><br />Hier kannst du nun ein Bild aus deinem Portfolio auswählen um dieses zu versenden.<br /><br /><form action='privat_sendphoto.php' method='post' name='bugo' enctype="multipart/form-data">
+		<input type='hidden' name='action' value='go' />
+		<input type='hidden' name='p' value='644529' />
+		<input type='hidden' name='id' value='597996' />
+		<table style='border:0;margin:0 auto;'>
+		<tr>
+		<td>Bild: </td>
+		<td>&nbsp;</td>
+		<td><input type='file' name='bild' accept="image/*" /></td>
+		</tr>
+		</table><br />
+		<br />
+		<div style='text-align:center'><input type='submit' value="Bild senden" /></div>
+		<br />
+		</form><div style='max-width:500px;margin:0 auto;border:1px #555 solid;border-radius:5px;box-shadow:2px 2px 5px 5px #888;'>
+			<h3>Dein Portfolio</h3>
+			<table style='width:100%;'><tr>
+					<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+					<a href='../privat/644529/1bee5f1f180bce0a4904058067cf20c8.jpg' target='_blank'><img src='../privat/644529/1bee5f1f180bce0a4904058067cf20c8.jpg' style='height:80px;' alt='' /></a>
+					</td>
+					<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+					<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=portfolio&name=1bee5f1f180bce0a4904058067cf20c8';" /><br />
+					</td>
+					</tr><tr>
+					<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+					<a href='../privat/644529/0a4e488aa07a9eccec85e3fc9e9f26bb.jpg' target='_blank'><img src='../privat/644529/0a4e488aa07a9eccec85e3fc9e9f26bb.jpg' style='height:80px;' alt='' /></a>
+					</td>
+					<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+					<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=portfolio&name=0a4e488aa07a9eccec85e3fc9e9f26bb';" /><br />
+					</td>
+					</tr><tr>
+					<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+					<a href='../privat/644529/a85af30bd5e385e5ec44f9553e31f2c0.jpg' target='_blank'><img src='../privat/644529/a85af30bd5e385e5ec44f9553e31f2c0.jpg' style='height:80px;' alt='' /></a>
+					</td>
+					<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+					<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=portfolio&name=a85af30bd5e385e5ec44f9553e31f2c0';" /><br />
+					</td>
+					</tr><tr>
+					<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+					<a href='../privat/644529/cbc712b823bc65d6b2df66beeaafee3a.jpg' target='_blank'><img src='../privat/644529/cbc712b823bc65d6b2df66beeaafee3a.jpg' style='height:80px;' alt='' /></a>
+					</td>
+					<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+					<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=portfolio&name=cbc712b823bc65d6b2df66beeaafee3a';" /><br />
+					</td>
+					</tr><tr>
+					<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+					<a href='../privat/644529/966bfafb57035966f2ddf19e81db4a40.jpg' target='_blank'><img src='../privat/644529/966bfafb57035966f2ddf19e81db4a40.jpg' style='height:80px;' alt='' /></a>
+					</td>
+					<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+					<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=portfolio&name=966bfafb57035966f2ddf19e81db4a40';" /><br />
+					</td>
+					</tr></table></div><br /><br /><div style='border:1px #000 solid;border-radius:5px;box-shadow:2px 2px 5px 5px #888;max-width:500px;margin:0 auto;text-align:center;'><b>Sende ein Bild von der Vorlage</b><br />
+			<table style='border:1px #333 solid;width:100%;margin:0 auto;'><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/83ac58e0f2490b7c6414d98527c4650f.jpg' target='_blank'><img src='../privat/0/83ac58e0f2490b7c6414d98527c4650f.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=83ac58e0f2490b7c6414d98527c4650f';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/0c3895a188d873a9d91c902b982b35a7.jpg' target='_blank'><img src='../privat/0/0c3895a188d873a9d91c902b982b35a7.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=0c3895a188d873a9d91c902b982b35a7';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/17987872f8b34c92c1688725fd0aa58c.jpg' target='_blank'><img src='../privat/0/17987872f8b34c92c1688725fd0aa58c.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=17987872f8b34c92c1688725fd0aa58c';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/e07dd00f6ff2718c3d16e7db44f0ddd5.jpg' target='_blank'><img src='../privat/0/e07dd00f6ff2718c3d16e7db44f0ddd5.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=e07dd00f6ff2718c3d16e7db44f0ddd5';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/29c070109522278434a2b71839200996.jpg' target='_blank'><img src='../privat/0/29c070109522278434a2b71839200996.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=29c070109522278434a2b71839200996';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/dd4513dfe1bc91c602a2ccb2aefa6173.jpg' target='_blank'><img src='../privat/0/dd4513dfe1bc91c602a2ccb2aefa6173.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=dd4513dfe1bc91c602a2ccb2aefa6173';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/bc54b2d42327c641ee3a9d50ce6b4b87.jpg' target='_blank'><img src='../privat/0/bc54b2d42327c641ee3a9d50ce6b4b87.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=bc54b2d42327c641ee3a9d50ce6b4b87';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/3075ac274e68a07c997270ce5cb1c5e7.jpg' target='_blank'><img src='../privat/0/3075ac274e68a07c997270ce5cb1c5e7.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=3075ac274e68a07c997270ce5cb1c5e7';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/16228bf492585db08373c8761a66cd4d.jpg' target='_blank'><img src='../privat/0/16228bf492585db08373c8761a66cd4d.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=16228bf492585db08373c8761a66cd4d';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/ce9fe4bf997fe47f91bfa545d04c438e.jpg' target='_blank'><img src='../privat/0/ce9fe4bf997fe47f91bfa545d04c438e.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=ce9fe4bf997fe47f91bfa545d04c438e';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/7ccbe1d930cd6d052352803c4824ef1c.jpg' target='_blank'><img src='../privat/0/7ccbe1d930cd6d052352803c4824ef1c.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=7ccbe1d930cd6d052352803c4824ef1c';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/0abf39caad7887a2064981311a760dd1.jpg' target='_blank'><img src='../privat/0/0abf39caad7887a2064981311a760dd1.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=0abf39caad7887a2064981311a760dd1';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/07128ff64b63014b16838f97f9bbbe40.jpg' target='_blank'><img src='../privat/0/07128ff64b63014b16838f97f9bbbe40.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=07128ff64b63014b16838f97f9bbbe40';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/2210ba1287dc41ddaab7d3b11641893c.jpg' target='_blank'><img src='../privat/0/2210ba1287dc41ddaab7d3b11641893c.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=2210ba1287dc41ddaab7d3b11641893c';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/ff97b89bb6347ca10b5f3912aa1a58cd.jpg' target='_blank'><img src='../privat/0/ff97b89bb6347ca10b5f3912aa1a58cd.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=ff97b89bb6347ca10b5f3912aa1a58cd';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/45e80ec9e0838243ec1ed3d995d088d1.jpg' target='_blank'><img src='../privat/0/45e80ec9e0838243ec1ed3d995d088d1.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=45e80ec9e0838243ec1ed3d995d088d1';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/7bcf0d91585d85f973a73c66000d85ce.jpg' target='_blank'><img src='../privat/0/7bcf0d91585d85f973a73c66000d85ce.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=7bcf0d91585d85f973a73c66000d85ce';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/1c7ee102f0bce2312be80f64c342b313.jpg' target='_blank'><img src='../privat/0/1c7ee102f0bce2312be80f64c342b313.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=1c7ee102f0bce2312be80f64c342b313';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/466fdcda84aea53891fac8c262d6ccab.jpg' target='_blank'><img src='../privat/0/466fdcda84aea53891fac8c262d6ccab.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=466fdcda84aea53891fac8c262d6ccab';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/46b666143fecb9efff9ee8502cd63d6c.jpg' target='_blank'><img src='../privat/0/46b666143fecb9efff9ee8502cd63d6c.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=46b666143fecb9efff9ee8502cd63d6c';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/e1b135c017050ba5a6676f4005d03576.jpg' target='_blank'><img src='../privat/0/e1b135c017050ba5a6676f4005d03576.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=e1b135c017050ba5a6676f4005d03576';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/8db66b6ed2e6ed1b67c8865446a67f38.jpg' target='_blank'><img src='../privat/0/8db66b6ed2e6ed1b67c8865446a67f38.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=8db66b6ed2e6ed1b67c8865446a67f38';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/8d86d394f49f119261d28b4f1190af0e.jpg' target='_blank'><img src='../privat/0/8d86d394f49f119261d28b4f1190af0e.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=8d86d394f49f119261d28b4f1190af0e';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/b6117f5b28640995b683c5151f9cfa7b.jpg' target='_blank'><img src='../privat/0/b6117f5b28640995b683c5151f9cfa7b.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=b6117f5b28640995b683c5151f9cfa7b';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/5b4689bf828ae69a64041c3e66dc9b24.jpg' target='_blank'><img src='../privat/0/5b4689bf828ae69a64041c3e66dc9b24.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=5b4689bf828ae69a64041c3e66dc9b24';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/5a205cc65cafe2eac6ff9dd6d68b74c2.jpg' target='_blank'><img src='../privat/0/5a205cc65cafe2eac6ff9dd6d68b74c2.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=5a205cc65cafe2eac6ff9dd6d68b74c2';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/1fb2b326826404a4c24579cbd369e455.jpg' target='_blank'><img src='../privat/0/1fb2b326826404a4c24579cbd369e455.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=1fb2b326826404a4c24579cbd369e455';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/87b0d12adb0814d9f00645f9fd936ef6.jpg' target='_blank'><img src='../privat/0/87b0d12adb0814d9f00645f9fd936ef6.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=87b0d12adb0814d9f00645f9fd936ef6';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/65d1854a8b91eea42983ce451c11606d.jpg' target='_blank'><img src='../privat/0/65d1854a8b91eea42983ce451c11606d.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=65d1854a8b91eea42983ce451c11606d';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/a4a4dd76b4fa335176ca757e2149c6bd.jpg' target='_blank'><img src='../privat/0/a4a4dd76b4fa335176ca757e2149c6bd.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=a4a4dd76b4fa335176ca757e2149c6bd';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/9f0c3ddbab4e5f93c1c0741daf14d58a.jpg' target='_blank'><img src='../privat/0/9f0c3ddbab4e5f93c1c0741daf14d58a.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=9f0c3ddbab4e5f93c1c0741daf14d58a';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/262ab24ca8a84dfcec4011f28d7d4817.jpg' target='_blank'><img src='../privat/0/262ab24ca8a84dfcec4011f28d7d4817.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=262ab24ca8a84dfcec4011f28d7d4817';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/53c4b6a73f0d0466b9e3083baa549fc1.jpg' target='_blank'><img src='../privat/0/53c4b6a73f0d0466b9e3083baa549fc1.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=53c4b6a73f0d0466b9e3083baa549fc1';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/78b39adbad2cd285aee01d67aed14e35.jpg' target='_blank'><img src='../privat/0/78b39adbad2cd285aee01d67aed14e35.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=78b39adbad2cd285aee01d67aed14e35';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/3461ac8e04785b24988051b429a108bd.jpg' target='_blank'><img src='../privat/0/3461ac8e04785b24988051b429a108bd.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=3461ac8e04785b24988051b429a108bd';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/c82462a63b2261a5d130f2fc706f46fe.jpg' target='_blank'><img src='../privat/0/c82462a63b2261a5d130f2fc706f46fe.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=c82462a63b2261a5d130f2fc706f46fe';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/7e379bd8a45766f85a261caffd3aa21b.jpg' target='_blank'><img src='../privat/0/7e379bd8a45766f85a261caffd3aa21b.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=7e379bd8a45766f85a261caffd3aa21b';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/22754255fdf723d959b420167fcb68bd.jpg' target='_blank'><img src='../privat/0/22754255fdf723d959b420167fcb68bd.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=22754255fdf723d959b420167fcb68bd';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/ae697e7064277e3d360a69954144792a.jpg' target='_blank'><img src='../privat/0/ae697e7064277e3d360a69954144792a.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=ae697e7064277e3d360a69954144792a';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/c498d7d72fd59b8dfea4b78449604878.jpg' target='_blank'><img src='../privat/0/c498d7d72fd59b8dfea4b78449604878.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=c498d7d72fd59b8dfea4b78449604878';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/637af97408fc927c777d2519c10d0732.jpg' target='_blank'><img src='../privat/0/637af97408fc927c777d2519c10d0732.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=637af97408fc927c777d2519c10d0732';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/c8a16c56f571a46b87a7348698bad3d4.jpg' target='_blank'><img src='../privat/0/c8a16c56f571a46b87a7348698bad3d4.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=c8a16c56f571a46b87a7348698bad3d4';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/9059400a498ebb194dd6335a2b97962a.jpg' target='_blank'><img src='../privat/0/9059400a498ebb194dd6335a2b97962a.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=9059400a498ebb194dd6335a2b97962a';" /><br />
+				</td>
+				</tr><tr>
+				<td style='text-align:right;border-bottom:1px #555 solid;vertical-align:middle;text-align:left;'>
+				<a href='../privat/0/d2a6dc6b2cda857dd96603b4400f3280.jpg' target='_blank'><img src='../privat/0/d2a6dc6b2cda857dd96603b4400f3280.jpg' style='height:80px;' alt='' /></a>
+				</td>
+				<td style='border-bottom:1px #555 solid;vertical-align:middle;text-align:right;'>
+				<input style='width:auto;' type='button' value='Absenden' onclick="window.location.href='?p=644529&id=597996&action=vorlage&name=d2a6dc6b2cda857dd96603b4400f3280';" /><br />
+				</td>
+				</tr></table></div><br /></div><br /><br /><br /><script type="text/javascript">
+
+	function ticker()
+	{
+		$.ajax
+		({
+			url:		'chat_ajax_chat.php?id=0',
+			method: 	'GET',
+			data:		'',
+			success: 	function(transport)
+			{
+				if(transport=='!systemkick!'){window.location.href='logout.php';return;}
+				window.setTimeout("ticker()", 5000);
+			}
+		});		
+	}
+
+	ticker();
+
+	$(document).ready(function() {
+		$("a[rel=example_group]").fancybox({
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none',
+			'titlePosition' 	: 'over',
+			'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+				return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+			}
+		});
+	});
+
+	
+	</script>
+	</body></html>

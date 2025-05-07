@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>beloops</title>
+    <link type="text/css" rel="stylesheet" href="bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap">
+    <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link type="text/css" rel="stylesheet" href="../css/jquery-ui.min.css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/popper.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="../fancybox/jquery.fancybox.css" media="screen">
+	<script type="text/javascript" src="../fancybox/jquery.fancybox.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<link rel="icon" type="image/x-icon" href="../favicon.ico">
+	<link rel="apple-touch-icon" href="../favicon57.png" sizes="57x57">
+	<link rel="apple-touch-icon" href="../favicon60.png" sizes="60x60">
+	<link rel="apple-touch-icon" href="../favicon72.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="../favicon76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="../favicon114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="../favicon120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="../favicon128.png" sizes="128x128">
+	<link rel="apple-touch-icon" href="../favicon144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="../favicon152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="../favicon180.png" sizes="180x180">
+	<link rel="apple-touch-icon" href="../favicon192.png">
+	<link rel="icon" type="image/png" href="../favicon16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="../favicon32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="../favicon96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="../favicon160.png" sizes="160x160">
+	<link rel="icon" type="image/png" href="../favicon192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="../favicon196.png" sizes="196x196">
+	<link rel="manifest" href="manifest.json">
+	<meta name="msapplication-TileImage" content="../favicon144.png">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-navbutton-color" content="#d52b1e">
+	<meta name="msapplication-square70x70logo" content="../favicon70.png">
+	<meta name="msapplication-square144x144logo" content="../favicon144.png">
+	<meta name="msapplication-square150x150logo" content="../favicon150.png">
+  </head>
+  <body>
+  <div id='msgnotice' class="notifications" style='display:none;z-index:50;' ></div>
+	<div class="flirtbooster-overlay" id="error">
+		<div class="wrap">
+			<div class="box">
+				<div class="col-md-12 flirtbooster-text">
+				<!-- div class="close" onclick="$('#error').fadeOut();">x</div -->
+				<div id="errormessage" style='text-align:center;'></div>
+				<br /><br />
+				<button class="btn" style="margin:0 auto;width:auto;display:block;" onclick="$('#error').fadeOut();">close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class='hidden-sm hidden-xs' style='font-size:24px;text-align:left;position:relative;width:100%;padding-top:2px;padding-bottom:2px;background:#080;color:#eee;font-weight:bold;'>
+	<div id='nav_desk' style='display:inline-block;'><a title='wechsel zum Team' href='team_base.php'><span class='fa fa-exchange-alt' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a><a title='Home' href='privat_base.php'><span class='fa fa-home' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a><a title='Favoriten' href='privat_favoriten.php'><span class='fa fa-star' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a><a title='Fake erstl.' href='privat_new_user.php'><span class='fa fa-user-plus' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Meine Fakes' href='privat_myprofile.php'><span class='fa fa-user' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Diafakes' href='privat_diafake.php'><span class='fa fa-user-secret' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Meine Kunden' href='privat_meinekunden.php'><span class='fa fa-blind' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Aktive Dias' href='privat_dialoge.php'><span class='fa fa-comments' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Wartezimmer' href='privat_wartezimmer.php'><span class='fa fa-hourglass-half' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+		<a title='Schwarze Brett' href='privat_brett.php'><span class='fa fa-clipboard' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a><a title='Tickets' href='privat_ticket.php'><span class='fa fa-tag' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+	<a title='' alt='' href='privat_setup.php'><span class='fa fa-cog' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a>
+	<a title='Logout' href='logout.php'><span class='fa fa-sign-out-alt' style='display:inline-block;font-size:24px;color:#eee;margin:2px;'></span></a></div>
+	<span style='float:right;color:#ff9900;font-weight:normal;font-size:18px;'><span title='Coins' class='fa fa-database' style='font-size:24px;color:#eee;margin:2px;'></span> <span style='font-size:18px;'>(18:40)</span>: <a href='privat_umsatz.php' style='color:#eee;'>35 | 68</a> </span></div><div id='nav_mobile' class='visible-sm visible-xs' style='font-size:18px;text-align:left;position:relative;width:100%;padding-top:2px;padding-bottom:2px;background:#080;color:#eee;font-weight:bold;'>
+	<a href='javascript:void(0);' onclick="temp=document.getElementById('nav_desk').innerHTML;temp=temp.replace(/#eee/g,'#333');document.getElementById('errormessage').innerHTML=temp.replace(/2px/g,'8px');$('#error').fadeIn();"><span class='fa fa-bars' style='font-size:18px;color:#eee;margin:2px;'></span></a>
+	<span style='float:right;color:#ff9900;font-weight:normal;font-size:18px;'>
+	<span title='Coins' class='fa fa-database' style='font-size:18px;color:#eee;margin:2px;'></span> <span style='font-size:18px;'>(18:40)</span>: <a href='privat_umsatz.php' style='color:#eee;'>35 | 68</a> </span></div><audio id='msgplay'><source id='msgplay_src' src='../media/d1.mp3' type='audio/mpeg'></audio>
+		<div id='npm' style='display:none;z-index:50;width:300px;height:100px;position:fixed;bottom:10px;right:10px;background-color: rgba(0, 0, 0, 0.6);border:2px #000 solid;border-radius:10px;box-shadow:2px 2px 5px 5px #888;'></div>
+		<script type='text/javascript'><!--
+		function msgsound(filename)
+		{
+			document.getElementById('msgplay_src').src = '../media/'+filename;
+			document.getElementById('msgplay').load();
+			document.getElementById('msgplay').play();
+		}
+
+		var msgnewid=0;
+
+		function msgchecknew()
+		{
+			$.ajax
+			({
+				url:		'privat_ajax_sound.php?id='+msgnewid,
+				method: 	'GET',
+				data:		'',
+				success: 	function(transport)
+				{
+					jdskhfds=transport.split('|');
+					if (jdskhfds[0].match(/success/))
+					{
+						if((jdskhfds[1]*1)==1 && msgnewid==0)
+						{
+							msgsound('d1.mp3');
+							document.getElementById('npm').innerHTML="<div onclick=\"window.location.href='"+jdskhfds[3]+"'\" style='cursor:pointer;text-align:center;width:100%;height:100%;font-size:24px;color:#fff;'><b>POWERCHAT</b><br />("+jdskhfds[2]+")</div>";
+							document.getElementById('npm').style.display='block';
+							msgnewid=1;
+						}
+					}
+					if(msgnewid==0)window.setTimeout('msgchecknew()',30000);
+				}
+			});		
+			
+		}
+		window.setTimeout('msgchecknew()',60000);
+		//--></script><div class='container' style='width:100%;'><center><br /><div onclick="window.location.href='privat_postfach.php?p=644529&id=597996&action=read&h=b5b4aeb1b64d36e3b349002af8ab0806'" style='cursor:pointer;max-width:400px;height:100px;border-radius:10px;border:#004400 2px solid;font-size:28px;color:#ffffff;background:#009900;box-shadow:2px 2px 5px 5px #040;'><b style='text-shadow:5px 5px 5px #000;'>POWERCHAT 1:1</b><br />Message</div><br /><br /></center><center><h3>Chat response time</h3>
+<div style='max-width:600px;border:1px #555 solid;border-radius:10px;box-shadow:2px 2px 5px 5px #888;'>
+<table cellpadding='2' cellspacing='0' style='width:100%;'>
+<tr style='background:#cccccc;'>
+<td style='width:50px;text-align:right;'><b>Actions</b></td>
+<td style='width:50px;text-align:right;'><b>Zeit</b></td>
+<td>&nbsp;</td>
+</tr><tr>
+<td style='text-align:right;'>0</td>
+<td style='text-align:right;'>0Sek.</td>
+<td style='text-align:left;'><div style='position:relative;width:0px;background:#008800;height:10px;'></div></td>
+</tr></table></div></center><br /><br /><center><table style='width:250px;border:1px #000000 solid;background-color:#dddddd;border-radius:5px;border-collapse:separate;'>
+<tr><td><b>Meine offenen Dialoge</b></td><td style='text-align:right;'>1</td></tr>
+<tr><td><b>offene ASA</b></td><td style='text-align:right;'>15</td></tr>
+<tr><td><b>Wartezimmer</b></td><td style='text-align:right;'>0</td></tr>
+</table></center><br /><br><center><h3>Meine Animationsprofile</h3>
+	<div style='max-width:900px;border:1px #555 solid;border-radius:10px;box-shadow:2px 2px 5px 5px #888;'>
+	<table cellpadding='0' cellspacing='0' style='width:100%;border-collapse:separate;border-radius:10px;'>
+	<tr style='background:#cccccc;'>
+	<td style='text-align:center;' colspan=2><b>Fake</b></td>
+	<td style='text-align:right;'><b><span class='fa fa-sign-in-alt'></span></b></td>
+	<td style='text-align:right;'><b><span class='fa fa-sign-out-alt'></span></b></td>
+	<td style='text-align:right;'><b>PLZ</b></td>
+	<td style='text-align:right;'><b>Partner</b></td>
+	<td style='text-align:right;'><b>Letzt. 30</b></td>
+	<td style='text-align:right;'><b>Offen</b></td>
+	<td style='text-align:right;'><b>Zuletzt</b></td>
+	</tr><tr style='background:#ffffff' onmouseover="this.style.background='#dddddd';this.style.cursor='pointer';" onmouseout="this.style.background='#ffffff';this.style.cursor='default';" onclick="window.location.href='privat_index.php?p=644529';" >
+		<td style='text-align:center;'><img src='https://beloops.com/gallery/644529/3beadf4765623933e29c9478043b4648l.jpg' alt='' width='40' /></td>
+		<td style='text-align:left;color:#ff55aa'><b>milenesser (47)</b></td>
+		<td style='text-align:right;'>5</td>
+		<td style='text-align:right;'>3</td>
+		<td style='text-align:right;'>?? ??</td>
+		<td style='text-align:right;'>1</td>
+		<td style='text-align:right;'>1</td>
+		<td style='text-align:right;'>1</td>
+		<td style='text-align:right;'>2025-05-07 13:25:49</td>
+		</tr></table></div><br /></center><div style='max-width:900px;border:1px #555 solid;border-radius:5px;margin:0 auto;box-shadow:2px 2px 5px 5px #888;'>
+	<table cellpadding='0' cellspacing='0' style='width:100%;'>
+	<tr style='background:#cccccc;'>
+	<td style='text-align:center;' colspan=2><b>Mitglied</b></td>
+	<td style='text-align:center;'><b>PM --&gt;</b></td>
+	<td style='text-align:center;'>&nbsp;</td>
+	<td style='text-align:center;'><b>&lt;-- PM</b></td>
+	<td style='text-align:center;' colspan=2><b>Fake</b></td>
+	</tr><tr style='background:#ffffff'>
+		<td style='text-align:center;'><img border='0' src='https://beloops.com/gallery/597996/2996a8913282a9e0b2217982b57b5138l.jpg' alt='' width='40' /></td>
+		<td style='text-align:left;color:#204080'><b>Devil7_ (50)</b></td>
+		<td style='text-align:center;'>5</td>
+		<td style='text-align:center;'>
+		<span class='fas fa-hourglass-half' style='font-size:24px;cursor:pointer;' title='Ins Wartezimmer verschieben' onclick="window.location.href='privat_postfach.php?p=644529&id=597996&action=warte_on';"></span>  
+		<span class='fa fa-eye' style='cursor:pointer;font-size:24px;' title='View' onclick="window.location.href='privat_profil.php?p=644529&id=597996&h=5977dd49fd379b2a32894eb5b4d01daf';"></span> 
+		<span class='fas fa-comment-dots' style='cursor:pointer;font-size:24px;' title='Schreiben' onclick="window.location.href='privat_postfach.php?action=read&p=644529&id=597996&h=5977dd49fd379b2a32894eb5b4d01daf';"></span> 
+		</td>
+		<td style='text-align:center;'>3</td>
+		<td style='text-align:right;color:#ff55aa'><b>milenesser (47)</b></td>
+		<td style='text-align:center;'><img border='0' src='https://beloops.com/gallery/644529/3beadf4765623933e29c9478043b4648l.jpg' alt='' width='40' /></td>
+		</tr></table></div><br /></div><br /><br /><br /><script type="text/javascript">
+
+	function ticker()
+	{
+		$.ajax
+		({
+			url:		'chat_ajax_chat.php?id=0',
+			method: 	'GET',
+			data:		'',
+			success: 	function(transport)
+			{
+				if(transport=='!systemkick!'){window.location.href='logout.php';return;}
+				window.setTimeout("ticker()", 5000);
+			}
+		});		
+	}
+
+	ticker();
+
+	$(document).ready(function() {
+		$("a[rel=example_group]").fancybox({
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none',
+			'titlePosition' 	: 'over',
+			'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+				return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+			}
+		});
+	});
+
+	
+	</script>
+	</body></html>

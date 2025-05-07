@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Fotoğraf Gönder - {{ project|title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h3>Fotoğraf Gönder ({{ project|title }})</h3>
+            <a href="{{ url_for('chat', project=project, p=p, id_=id_) }}" class="btn btn-secondary btn-sm mb-3">← Sohbete Dön</a>
+            
+            {% if photos %}
+                <div class="photo-grid">
+                    {% for photo in photos %}
+                    <div class="photo-item">
+                        <img src="{{ photo.url }}" alt="Photo" class="photo-img">
+                        <form method="POST" class="photo-form">
+                            <input type="hidden" name="photo_name" value="{{ photo.name }}">
+                            <button type="submit" class="send-button">Gönder</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-warning mt-4">Şu anda hiç fotoğraf bulunamadı.</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.photo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.photo-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.photo-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.photo-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.send-button {
+    padding: 8px 16px;
+    background: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s ease;
+}
+
+.send-button:hover {
+    background: #1976d2;
+}
+
+.send-button:active {
+    transform: scale(0.98);
+}
+</style>
+{% endblock %} 

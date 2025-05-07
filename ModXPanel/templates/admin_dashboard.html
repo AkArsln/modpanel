@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Paneli{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Admin Paneli</h2>
+    
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-users"></i> Kullanıcı Yönetimi</h5>
+                    <p class="card-text">Kullanıcıları yönetin, yeni kullanıcı ekleyin veya mevcut kullanıcıları düzenleyin.</p>
+                    <a href="{{ url_for('admin_users') }}" class="btn btn-primary">
+                        <i class="fas fa-user-cog"></i> Kullanıcıları Yönet
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-robot"></i> Bot Yönetimi</h5>
+                    <p class="card-text">Botları yönetin, durumlarını kontrol edin ve ayarlarını yapın.</p>
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-cogs"></i> Botları Yönet
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-chart-bar"></i> İstatistikler</h5>
+                    <p class="card-text">Sistem istatistiklerini ve kullanım raporlarını görüntüleyin.</p>
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-chart-line"></i> İstatistikleri Gör
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-cog"></i> Sistem Ayarları</h5>
+                    <p class="card-text">Sistem ayarlarını yapılandırın ve genel ayarları düzenleyin.</p>
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-wrench"></i> Ayarları Yönet
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Hızlı İşlemler</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="{{ url_for('create_user') }}" class="btn btn-success w-100 mb-2">
+                                <i class="fas fa-user-plus"></i> Yeni Kullanıcı Ekle
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{{ url_for('admin_users') }}" class="btn btn-info w-100 mb-2">
+                                <i class="fas fa-list"></i> Tüm Kullanıcıları Listele
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" class="btn btn-warning w-100 mb-2">
+                                <i class="fas fa-sync"></i> Sistem Durumunu Kontrol Et
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" class="btn btn-danger w-100 mb-2">
+                                <i class="fas fa-exclamation-triangle"></i> Hata Loglarını Görüntüle
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

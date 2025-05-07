@@ -1,0 +1,653 @@
+{% extends "base.html" %}
+
+{% block title %}Kullanıcı Paneli{% endblock %}
+
+{% block head %}
+<style>
+:root {
+    --primary: #7C4DFF;
+    --accent: #FF4081;
+    --bg-light: #f3f6fb;
+    --bg-dark: #181a20;
+    --text-light: #23272f;
+    --text-dark: #f3f6fb;
+    --card-bg-light: #fff;
+    --card-bg-dark: #23272f;
+    --card-border-light: #e0e0e0;
+    --card-border-dark: #333;
+    --table-bg-light: #fff;
+    --table-bg-dark: #23272f;
+    --table-header-light: #ede7f6;
+    --table-header-dark: #23272f;
+    --border-radius: 18px;
+    --shadow: 0 4px 24px 0 rgba(60,60,60,0.10);
+}
+body {
+    background: var(--bg-light);
+    color: var(--text-light);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background 0.4s, color 0.4s;
+}
+body.dark-mode {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+}
+.theme-toggle {
+    position: absolute;
+    top: 18px;
+    right: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    transition: background 0.2s;
+    z-index: 10;
+}
+.theme-toggle:hover {
+    background: #ececec;
+}
+body.dark-mode .theme-toggle:hover {
+    background: #23272f;
+}
+.sun-moon {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.sun {
+    fill: #FFD600;
+    transition: opacity 0.4s;
+    opacity: 1;
+}
+.moon {
+    fill: #7C4DFF;
+    transition: opacity 0.4s;
+    opacity: 0;
+}
+body.dark-mode .sun {
+    opacity: 0;
+}
+body.dark-mode .moon {
+    opacity: 1;
+}
+.card {
+    background: var(--card-bg-light) !important;
+    border-radius: var(--border-radius) !important;
+    border: 1.5px solid var(--card-border-light) !important;
+    box-shadow: var(--shadow) !important;
+    transition: background 0.4s, border 0.4s;
+}
+body.dark-mode .card {
+    background: var(--card-bg-dark) !important;
+    border: 1.5px solid var(--card-border-dark) !important;
+}
+.card-header {
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+    background: var(--primary) !important;
+    color: #fff !important;
+}
+.table {
+    background: var(--table-bg-light);
+    color: var(--text-light);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: background 0.4s, color 0.4s;
+}
+body.dark-mode .table {
+    background: var(--table-bg-dark);
+    color: var(--text-dark);
+}
+.table thead {
+    background: var(--table-header-light);
+    color: var(--primary);
+    transition: background 0.4s, color 0.4s;
+}
+body.dark-mode .table thead {
+    background: var(--table-header-dark);
+    color: #b39ddb;
+}
+.table-hover tbody tr:hover {
+    background: #ede7f6;
+    color: var(--primary);
+}
+body.dark-mode .table-hover tbody tr:hover {
+    background: #23272f;
+    color: #b39ddb;
+}
+.btn-primary, .btn-success, .btn-info {
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px #7C4DFF22;
+    border: none;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover, .btn-success:hover, .btn-info:hover {
+    box-shadow: 0 4px 16px #7C4DFF33;
+}
+.salary-summary-animated {
+    background: linear-gradient(90deg, #7C4DFF 0%, #43a047 100%);
+    color: #fff;
+    border-radius: 22px;
+    box-shadow: 0 6px 32px 0 rgba(60,60,60,0.18);
+    padding: 32px 28px;
+    margin-bottom: 32px;
+    animation: fadeInScale 0.8s cubic-bezier(.68,-0.55,.27,1.55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+@keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+}
+.salary-summary-animated h4 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+.salary-summary-animated .salary-details {
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.salary-summary-animated .salary-details span {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-top: 2px;
+    letter-spacing: 1px;
+}
+.salary-summary-animated .period-info {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin-bottom: 0.5rem;
+}
+@media (max-width: 600px) {
+    .salary-summary-animated {
+        padding: 18px 8px;
+    }
+    .salary-summary-animated .salary-details {
+        flex-direction: column;
+        gap: 12px;
+        font-size: 1.1rem;
+    }
+    .salary-summary-animated .salary-details span {
+        font-size: 1.3rem;
+    }
+}
+.dashboard-toplist-row { border-bottom:1px solid #f0f0f0; font-size:0.98em; }
+.dashboard-toplist-list { min-height: 220px; }
+.trophy { margin-right:2px; border-radius:3px; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
+.rank { font-weight:bold; color:#888; }
+.username { color:#23272f; }
+.coins { font-weight:bold; color:#7C4DFF; }
+@media (max-width: 900px) {
+    .dashboard-toplist-row { font-size:0.95em; }
+    .dashboard-toplist-list { min-height: 0; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<button class="theme-toggle" id="theme-toggle" title="Mod Değiştir">
+    <svg class="sun-moon">
+        <circle class="sun" cx="14" cy="14" r="10" />
+        <path class="moon" d="M 14 4 A 10 10 0 1 0 24 14 A 7 7 0 1 1 14 4 Z" />
+    </svg>
+</button>
+<div class="container position-relative">
+    <!-- dashboard içeriği -->
+    <div class="row mb-4">
+        <div class="col">
+            <h2>Hoş Geldiniz, {{ current_user.username }}!</h2>
+            <p class="text-muted">Son giriş: {{ now().strftime('%d.%m.%Y %H:%M') }}</p>
+        </div>
+        <div class="col-auto">
+            <!-- Start Work Button -->
+            <div class="text-center mb-4">
+                <div class="small text-muted mb-2">
+                    Debug: Project={{ auto_project }}, p={{ auto_p }}, id={{ auto_id }}
+                </div>
+                {% if auto_project and auto_p and auto_id %}
+                    <a href="{{ url_for('chat', project=auto_project, p=auto_p, id_=auto_id) }}" 
+                       class="btn btn-primary btn-lg">
+                        <i class="fas fa-play me-2"></i>İşe Başla
+                    </a>
+                {% else %}
+                    <button class="btn btn-primary btn-lg" disabled>
+                        <i class="fas fa-play me-2"></i>İşe Başla
+                    </button>
+                    <div class="small text-danger mt-2">
+                        {% if not auto_project %}Proje bulunamadı{% endif %}
+                        {% if not auto_p %}p değeri bulunamadı{% endif %}
+                        {% if not auto_id %}id değeri bulunamadı{% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Üçlü Toplist Paneli -->
+    <div class="row mb-4" id="dashboard-toplists">
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white text-center">
+                    <b>Momaily Top 10</b>
+                </div>
+                <div class="card-body p-2">
+                    <div id="toplist-momaily" class="dashboard-toplist-list text-center">Yükleniyor...</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-success text-white text-center">
+                    <b>Liebesfun Top 10</b>
+                </div>
+                <div class="card-body p-2">
+                    <div id="toplist-liebesfun" class="dashboard-toplist-list text-center">Yükleniyor...</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white text-center">
+                    <b>Beloops Top 10</b>
+                </div>
+                <div class="card-body p-2">
+                    <div id="toplist-beloops" class="dashboard-toplist-list text-center">Yükleniyor...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="salary-summary-animated">
+                <h4>Maaş Dönemi: <span>{{ active_salary_period }}</span></h4>
+                <div class="period-info">(1. Dönem: 1-15, 2. Dönem: 16-31)</div>
+                <div class="salary-details">
+                    <div>Toplam Euro<br><span>{{ '%.2f'|format(salary_total.euro) }} €</span></div>
+                    <div>Toplam Mesaj<br><span>{{ salary_total.messages }}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Günlük Coin/Mesaj Tablosu ve Maaş Dönemi Toplamları -->
+    {% for project in ['momaily', 'liebesfun', 'beloops'] %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">{{ project|title }} Günlük Coin / Mesaj / Kazanç Tablosu</h5>
+                    <span class="badge bg-primary">Bu Ay</span>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Tarih</th>
+                                    <th>Coin</th>
+                                    <th>Mesaj</th>
+                                    <th>Kazanç (€)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stat in stats_by_project[project] %}
+                                <tr>
+                                    <td>{{ stat.date.strftime('%d.%m.%Y') }}</td>
+                                    <td>{{ stat.coins }}</td>
+                                    <td>{{ stat.messages }}</td>
+                                    <td>{{ '%.2f'|format(stat.euro) }}</td>
+                                </tr>
+                                {% else %}
+                                <tr><td colspan="4" class="text-muted">Veri yok</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Maaş Dönemi Toplamları -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">{{ project|title }} 1. Maaş Dönemi (1-15)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Toplam Coin:</span>
+                        <strong>{{ salary[project]['salary1'].coins }}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Toplam Mesaj:</span>
+                        <strong>{{ salary[project]['salary1'].messages }}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Toplam Kazanç (€):</span>
+                        <strong>{{ '%.2f'|format(salary[project]['salary1'].euro) }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">{{ project|title }} 2. Maaş Dönemi (16-31)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Toplam Coin:</span>
+                        <strong>{{ salary[project]['salary2'].coins }}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Toplam Mesaj:</span>
+                        <strong>{{ salary[project]['salary2'].messages }}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Toplam Kazanç (€):</span>
+                        <strong>{{ '%.2f'|format(salary[project]['salary2'].euro) }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- Takvim ve Bugünün Olayları -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <h5 class="mb-0">Takvim / Hatırlatıcı</h5>
+                </div>
+                <div class="card-body">
+                    <form id="calendar-form" class="mb-3">
+                        <div class="mb-2">
+                            <label class="form-label">Tarih Seç</label>
+                            <input type="date" id="calendar-date" class="form-control" required>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Hatırlatma Notu</label>
+                            <input type="text" id="calendar-note" class="form-control" maxlength="200" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100">Kaydet</button>
+                        <div id="calendar-saved" class="text-success mt-2" style="display:none;">Kaydedildi!</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h5 class="mb-0">Bugünün Olayları</h5>
+                </div>
+                <div class="card-body">
+                    <ul id="todays-events-list" class="list-group">
+                        {% for event in todays_events %}
+                        <li class="list-group-item">{{ event.note }}</li>
+                        {% else %}
+                        <li class="list-group-item text-muted">Bugün için hatırlatma yok.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Takvim formu AJAX
+        document.getElementById('calendar-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const date = document.getElementById('calendar-date').value;
+            const note = document.getElementById('calendar-note').value;
+            fetch('/calendar/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ event_date: date, note: note })
+            }).then(r => r.json()).then(resp => {
+                if (resp.success) {
+                    document.getElementById('calendar-saved').style.display = 'block';
+                    setTimeout(() => { document.getElementById('calendar-saved').style.display = 'none'; }, 1500);
+                    // Eğer bugünün tarihi ise, listeye ekle
+                    const today = new Date().toISOString().slice(0,10);
+                    if (date === today) {
+                        const ul = document.getElementById('todays-events-list');
+                        const li = document.createElement('li');
+                        li.className = 'list-group-item';
+                        li.textContent = note;
+                        if (ul.querySelector('.text-muted')) ul.innerHTML = '';
+                        ul.appendChild(li);
+                    }
+                    document.getElementById('calendar-form').reset();
+                }
+            });
+        });
+    });
+    </script>
+    <!-- Sohbetler (Modern) -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-accent text-white d-flex align-items-center justify-content-between">
+                    <h5 class="mb-0">Sohbetler</h5>
+                    <span class="badge bg-primary">Aktif</span>
+                </div>
+                <div class="card-body">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                        {% for conv in conversations %}
+                        <div class="col">
+                            <a href="{{ url_for('chat', project=auto_project or 'momaily', p=conv.p, id_=conv.id) }}" class="text-decoration-none">
+                                <div class="sohbet-card card h-100 shadow-sm hover-shadow">
+                                    <div class="card-body d-flex flex-column justify-content-between">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="sohbet-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width:38px;height:38px;font-size:1.2em;">
+                                                <span>{{ conv.name[0]|upper }}</span>
+                                            </div>
+                                            <div>
+                                                <div class="fw-bold text-dark">{{ conv.name }}</div>
+                                                <div class="text-muted small">p={{ conv.p }}, id={{ conv.id }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="sohbet-message-preview text-secondary small mb-1">
+                                            <span class="text-muted">Mesaj yok</span>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="badge bg-light text-dark border border-1 border-secondary small">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% else %}
+                        <div class="col">
+                            <div class="alert alert-info">Aktif sohbet yok.</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- DEBUG: conversations -->
+    <div style="background:#ffe;border:1px solid #ccc;padding:8px 12px;margin-bottom:12px;">
+      <b>DEBUG:</b> conversations = {{ conversations|length }} adet
+      <pre style="max-height:200px;overflow:auto;font-size:12px;">{{ conversations|tojson }}</pre>
+    </div>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js içeriği -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Momaily Günlük Mesaj & Kazanç (€) Grafiği</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="momailyComboChart" height="120"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    const momailyLabels = [
+        {% for stat in daily_coin_stats|reverse %}'{{ stat.date.strftime('%d.%m') }}'{% if not loop.last %},{% endif %}{% endfor %}
+    ];
+    const momailyMessages = [
+        {% for stat in daily_coin_stats|reverse %}{{ stat.messages }}{% if not loop.last %},{% endif %}{% endfor %}
+    ];
+    const momailyEuros = [
+        {% for stat in daily_coin_stats|reverse %}{{ stat.euro }}{% if not loop.last %},{% endif %}{% endfor %}
+    ];
+
+    new Chart(document.getElementById('momailyComboChart').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: momailyLabels,
+            datasets: [
+                {
+                    label: 'Mesaj',
+                    data: momailyMessages,
+                    borderColor: '#7C4DFF',
+                    backgroundColor: 'rgba(124,77,255,0.1)',
+                    fill: false,
+                    tension: 0.3,
+                    pointRadius: 3,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Kazanç (€)',
+                    data: momailyEuros,
+                    borderColor: '#43a047',
+                    backgroundColor: 'rgba(67,160,71,0.1)',
+                    fill: false,
+                    tension: 0.3,
+                    pointRadius: 3,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: true } },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Mesaj' },
+                    position: 'left'
+                },
+                y1: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Kazanç (€)' },
+                    position: 'right',
+                    grid: { drawOnChartArea: false }
+                }
+            }
+        }
+    });
+    </script>
+    <!-- En İyi 10 Çalışan -->
+    {% for prj in ['momaily', 'liebesfun', 'beloops'] %}
+    <div class="card mb-3">
+        <div class="card-header bg-primary text-white py-2 text-center">
+            <b>En İyi 10 Çalışan - {{ prj|title }}</b>
+        </div>
+        <div class="card-body p-2" id="top10-{{ prj }}">
+            Yükleniyor...
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<script>
+// Sayfa yüklendiğinde
+document.addEventListener('DOMContentLoaded', function() {
+    // Her 30 saniyede bir sayfayı yenile
+    setInterval(function() {
+        // Eğer auto_next parametresi yoksa yenile
+        if (!window.location.search.includes('auto_next=true')) {
+            window.location.reload();
+        }
+    }, 30000); // 30 saniye
+
+    // Mesaj göstergelerini güncelle
+    updateMessageIndicators();
+    setInterval(updateMessageIndicators, 15000);
+
+    ['momaily', 'liebesfun', 'beloops'].forEach(function(prj) {
+        fetch(`/api/toplist/${prj}`)
+            .then(res => res.json())
+            .then(data => {
+                // ... (her paneli ayrı doldur)
+            });
+    });
+});
+
+// Mesaj göstergelerini güncelle
+function updateMessageIndicators() {
+    fetch('/api/message_counts')
+        .then(resp => resp.json())
+        .then(data => {
+            // Momaily
+            document.getElementById('momaily-dialog').textContent = data.momaily.dialog;
+            document.getElementById('momaily-asa').textContent = data.momaily.asa;
+            document.getElementById('momaily-wartezimmer').textContent = data.momaily.wartezimmer;
+            // Liebesfun
+            document.getElementById('liebesfun-dialog').textContent = data.liebesfun.dialog;
+            document.getElementById('liebesfun-asa').textContent = data.liebesfun.asa;
+            document.getElementById('liebesfun-wartezimmer').textContent = data.liebesfun.wartezimmer;
+            // Beloops
+            document.getElementById('beloops-dialog').textContent = data.beloops.dialog;
+            document.getElementById('beloops-asa').textContent = data.beloops.asa;
+            document.getElementById('beloops-wartezimmer').textContent = data.beloops.wartezimmer;
+        });
+}
+
+function fixTrophyPath(path) {
+    if (!path) return '';
+    if (path.startsWith('http')) return path;
+    if (path.startsWith('../pic/')) return '/static/pic/' + path.replace('../pic/', '');
+    if (path.startsWith('/pic/')) return '/static' + path;
+    return path;
+}
+function renderDashboardToplist(project, data) {
+    const area = document.getElementById('toplist-' + project);
+    let list = [];
+    if (project === 'momaily') {
+        list = (data && data.day_before) ? data.day_before : [];
+    } else {
+        list = (data && data.today) ? data.today : [];
+    }
+    if (!list.length) {
+        area.innerHTML = '<div class="text-muted">Veri yok.</div>';
+        return;
+    }
+    area.innerHTML = list.map(user => `
+        <div class="d-flex align-items-center justify-content-between py-1 px-2 dashboard-toplist-row">
+            <div class="d-flex align-items-center gap-2">
+                ${user.trophy ? `<img src="${fixTrophyPath(user.trophy)}" class="trophy" style="width:16px;height:16px;vertical-align:middle;">` : `<span class="rank" style="width:22px;display:inline-block;text-align:right;">${user.rank}.</span>`}
+                <span class="username" style="font-weight:500;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${user.username}</span>
+            </div>
+            <span class="coins" style="font-weight:bold;color:#7C4DFF;min-width:70px;text-align:right;">${user.coins}</span>
+        </div>
+    `).join('');
+}
+['momaily','liebesfun','beloops'].forEach(prj => {
+    fetch(`/api/toplist/${prj}`)
+        .then(res => res.json())
+        .then(data => renderDashboardToplist(prj, data.data));
+});
+</script>
+{% endblock %} 

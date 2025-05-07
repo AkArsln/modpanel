@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ project|capitalize }} Profil Düzenleme</h2>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <div class="row">
+        <div class="col-md-6">
+            <form method="POST" class="card">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">İsim</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ profile.name }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Yaş</label>
+                        <input type="number" class="form-control" id="age" name="age" value="{{ profile.age }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Şehir</label>
+                        <input type="text" class="form-control" id="city" name="city" value="{{ profile.city }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="job" class="form-label">Meslek</label>
+                        <input type="text" class="form-control" id="job" name="job" value="{{ profile.job }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="working_hours" class="form-label">Çalışma Saatleri</label>
+                        <input type="text" class="form-control" id="working_hours" name="working_hours" value="{{ profile.working_hours }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Durum</label>
+                        <input type="text" class="form-control" id="status" name="status" value="{{ profile.status }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Açıklama</label>
+                        <textarea class="form-control" id="description" name="description" rows="5">{{ profile.description }}</textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Profil Fotoğrafları</h5>
+                    <div class="row">
+                        {% for photo in profile.photos %}
+                        <div class="col-md-4 mb-3">
+                            <img src="{{ photo }}" class="img-fluid rounded" alt="Profil fotoğrafı">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

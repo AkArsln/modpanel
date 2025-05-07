@@ -1,0 +1,956 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<link href="../favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="no-cache" http-equiv="Cache-Control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="0" http-equiv="Expires"/>
+<title>Chatcenter</title>
+<link href="lightbox.css" media="screen" rel="stylesheet" type="text/css"/>
+<link href="styles.css" rel="stylesheet" type="text/css"/>
+<script src="../js/prototype.js" type="text/javascript"></script>
+<script src="../js/scriptaculous.js?load=effects,builder" type="text/javascript"></script>
+<script src="../js/lightbox.js" type="text/javascript"></script>
+</head><body style="background:#ffffff;"><center>
+<div id="LoadMessage" onclick="document.getElementById('message').style.display='none'; document.getElementById('error').style.display='none';	document.getElementById('LoadMessage').style.display='none';" style="display:none;z-index:1000;"></div>
+<div id="error" style="top:50%;left:50%;width:600px;margin-left:-300px;margin-top:-200px;z-index:1001;position:fixed;display:none;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td>
+<table cellpadding="0" cellspacing="0" width="100%"><tr>
+<td width="9"><img alt="" src="https://liebesfun.de/pic/mes_r_ol.png"/></td>
+<td style="font-size:12px;font-weight:bold;color:#ffffff;height:14px;background-image:url(https://liebesfun.de/pic/mes_r_om.png);background-repeat:repeat-x;">Fehlermeldung</td>
+<td width="9"><img alt="" src="https://liebesfun.de/pic/mes_r_or.png"/></td>
+</tr></table>
+</td></tr>
+<tr><td style="font-size:12px;color:#000000;background:#ffffff;border-left:1px solid #000000;border-right:1px solid #000000;padding:2px;">
+<br/><div id="errormessage" style="text-align:center;"></div><br/>
+<br/><center><input onclick="document.getElementById('error').style.display='none';	document.getElementById('LoadMessage').style.display='none';" type="button" value="Fenster schließen"/></center><br/><br/>
+</td></tr>
+<tr><td>
+<table cellpadding="0" cellspacing="0" width="100%"><tr>
+<td width="8"><img alt="" src="https://liebesfun.de/pic/mes_ul.png"/></td>
+<td style="height:8px;background:#ffffff;border-bottom:1px #000000 solid;"><img alt="" src="https://liebesfun.de/pic/pixel.gif"/></td>
+<td width="8"><img alt="" src="https://liebesfun.de/pic/mes_ur.png"/></td>
+</tr></table>
+</td></tr>
+</table>
+</div>
+<div id="message" style="top:50%;left:50%;width:600px;margin-left:-300px;margin-top:-200px;z-index:1001;position:fixed;display:none;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td>
+<table cellpadding="0" cellspacing="0" width="100%"><tr>
+<td style="width:9px;"><img alt="" src="https://liebesfun.de/pic/mes_b_ol.png" width="9"/></td>
+<td style="font-size:12px;font-weight:bold;color:#ffffff;height:14px;background-image:url(https://liebesfun.de/pic/mes_b_om.png);background-repeat:repeat-x;">Info</td>
+<td style="width:9px;"><img alt="" src="https://liebesfun.de/pic/mes_b_or.png" width="9"/></td>
+</tr></table>
+</td></tr>
+<tr><td style="font-size:12px;color:#000000;background:#ffffff;border-left:1px solid #000000;border-right:1px solid #000000;padding:2px;">
+<br/><div id="messagetext" style="text-align:center;"></div><br/>
+<br/><center><input onclick="document.getElementById('message').style.display='none';	document.getElementById('LoadMessage').style.display='none';" type="button" value="Fenster schließen"/></center><br/><br/>
+</td></tr>
+<tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+<td width="8"><img alt="" src="https://liebesfun.de/pic/mes_ul.png"/></td>
+<td style="height:8px;background:#ffffff;border-bottom:1px #000000 solid;"><img alt="" src="https://liebesfun.de/pic/pixel.gif"/></td>
+<td width="8"><img alt="" src="https://liebesfun.de/pic/mes_ur.png"/></td>
+</tr></table>
+</td></tr>
+</table>
+</div>
+<div id="nnavleiste" style="font-size:12px;text-align:left;position:relative;width:100%;padding-top:2px;padding-bottom:2px;background:#000000;color:#ffffff;font-weight:bold;"><select onchange="window.location.href='?anilang='+this.value" style="border:0;padding:0;margin:0;color:#aaa;background:#333;font-size:10px;">
+<option selected="selected" value="de">DE</option>
+<option value="en">EN</option>
+</select>  <a class="admein" href="old_c.php">wechsel zum Team</a> | <a class="admein" href="c.php">Home</a> | <a class="admein" href="view_favoriten.php">Favoriten</a> | <a class="admein" href="new_user.php">Fake erstl.</a> | 
+		<a class="admein" href="view_meineprofile.php">Meine Fakes</a> | 
+		<a class="admein" href="view_diafake.php">Diafakes</a> | 
+		<a class="admein" href="view_meinekunden.php">Meine Kunden</a> | 
+		<a class="admein" href="view_dialoge.php">Aktive Dias</a> | 
+		<a class="admein" href="view_wartezimmer.php">Wartezimmer</a> | <a class="admein" href="p_brett.php">Schwarze Brett</a> | <a class="admein" href="p_ticket.php">Tickets</a> | 
+	<a class="admein" href="einstellungen.php">Einstellungen</a> | 
+	<a class="admein" href="logout.php">Logout</a>
+<span style="float:right;color:#ff9900;font-weight:normal;font-size:12px;"><b>Coins</b> <span style="font-size:9px;">(17:40)</span>: <a class="admein" href="view_umsatz2.php">40 | 269</a> </span></div><!-- div id='msgplay' style='width:0px;height:0px;position:absolute;'></div -->
+<audio id="msgplay"><source id="msgplay_src" src="../slot/d1.mp3" type="audio/mpeg"/></audio>
+<div id="npm" style="display:none;z-index:50;width:400px;height:100px;position:fixed;bottom:0px;right:0px;background:#ffffff;border:4px #008800 solid;border-radius:10px;"></div>
+<script type="text/javascript"><!--
+	function msgsound(filename)
+	{
+		document.getElementById('msgplay_src').src = '../slot/'+filename;
+		document.getElementById('msgplay').load();
+		document.getElementById('msgplay').play();
+	}
+
+	var msgnewid=0;
+
+	function msgchecknew()
+	{
+		new Ajax.Request('ajax_sound.php?id='+msgnewid,{
+		method: 'get',
+		onSuccess: function(transport){
+		jdskhfds=transport.responseText.split('|');
+			if (jdskhfds[0].match(/success/))
+			{
+				if((jdskhfds[1]*1)==1 && msgnewid==0)
+				{
+					msgsound('d1.mp3');
+					//document.getElementById('npm').innerHTML="<table onclick=\"window.location.href='postfach.php?action=read&id="+jdskhfds[4]+"'\" onmouseover=\"this.style.cursor='pointer'\" onmouseout=\"this.style.cursor='pointer'\" width='100%'><tr><td width='100'><img src='"+jdskhfds[3]+"' alt='' style='border-radius:5px;width:95px;height:95px;'/></td><td><span class='titel s18'>Du hast Post von<br /><br />"+jdskhfds[2]+"</span></td></tr></table>";
+					document.getElementById('npm').innerHTML="<div onmouseover=\"this.style.cursor='pointer'\" onmouseout=\"this.style.cursor='default'\" onclick=\"window.location.href='"+jdskhfds[3]+"'\" style='width:200px;height:50px;border-radius:10px;border:#990000 2px solid;font-size:18px;color:#ffffff;background:#ee5500;'><b>POWERCHAT</b><br /><span style='font-size:11px;'>("+jdskhfds[2]+")</span></div>";
+					document.getElementById('npm').style.display='block';
+					msgnewid=1;
+				}
+			}
+			if(msgnewid==0)window.setTimeout('msgchecknew()',30000);
+		}
+		});
+	}
+	window.setTimeout('msgchecknew()',60000);
+	//--></script><div id="f1" style="position:relative;width:100%;"><table border="0" width="100%"><tr>
+<td style="text-align:left;width:350px;" valign="top"><table border="0" style="width:350px;float:left;">
+<tr><td>
+<table style="width:100%">
+<tr>
+<td><a href="javascript:void(0);" onclick="openblock('k_detail');"><span style="color:#4080ff;font-weight:bold;font-size:14px;">Ron666 (60)</span></a> <b style="font-size:14px;color:#000000;">(PM 1)</b><br/><br/>
+<center><img alt="" src="https://liebesfun.de/pic/fahne_105.gif"/> 04 <i>(Sachsen)</i></center></td>
+<td style="width:60px;position:relative;"><a href="p_profil.php?p=1025567&amp;id=991124&amp;h=c1c8184bcc97b1e0fcd8ee1de4503083"><img alt="" border="0" src="../profilbilder/991124/dbd1988337165a0e7c4be0d81470f545_140.jpg" style="width:60px;height:60px;"/></a></td>
+</tr></table>
+<div id="k_detail" style="width:100%;display:none;">
+<table>
+<tr>
+<td style="width:140px;text-align:center;position:relative;vertical-align:middle"><a href="p_profil.php?p=1025567&amp;id=991124&amp;h=c1c8184bcc97b1e0fcd8ee1de4503083"><img alt="" border="0" src="../profilbilder/991124/dbd1988337165a0e7c4be0d81470f545_140.jpg"/></a><br/>
+<table width="100%">
+<tr><td><b>Views: </b></td><td style="text-align:right;">2531</td></tr>
+<tr><td><b>Rating:</b></td><td style="text-align:right;">291</td></tr>
+<tr><td><b>Points:</b></td><td style="text-align:right;">3.34</td></tr>
+<tr><td><b>Score:</b></td><td style="text-align:right;">6877</td></tr>
+</table>
+</td>
+<td style="text-align:right;" valign="top">
+<table style="width:100%">
+<tr><td><b>Geschlecht</b></td><td>männlich</td></tr>
+<tr><td width="90"><b>Alter</b></td><td>60 (Skorpion)</td></tr>
+<tr><td><b>PLZ</b></td><td><img alt="" src="https://liebesfun.de/pic/fahne_105.gif"/> 04</td></tr>
+<tr><td><b>Mitglied seit</b></td><td>17.11.2023</td></tr>
+<tr><td><b>Zuletzt online</b></td><td>vor 1h 48Min</td></tr>
+<tr><td><b>Sucht</b></td><td>Frauen</td></tr><tr><td><b>Größe</b></td><td>173 cm</td></tr>
+<tr><td><b>Haarfarbe</b></td><td>- n.a. -</td></tr>
+<tr><td><b>Augenfarbe</b></td><td>﻿blue</td></tr>
+<tr><td><b>Raucher</b></td><td>yes</td></tr>
+</table>
+</td></tr>
+</table></div>
+</td></tr><tr><td valign="top"><fieldset><legend><b>Flirt Text</b></legend><div style="width:310px;height:100px;overflow-x: none; overflow-y:auto;font-size:10px;">Bin nicht zum Chatten hier <br/>Wenn du eine AC/DC interessierte Frau bist und Lust hast die Jungs (na ja, mittlerweile ältere Jungs 🤗) noch einmal live erleben möchtest, biete ich dir an, zur kommenden Europatour 2025 in Berlin mit zu fahren. Selbstverständlich nur bei gegenseitiger Sympathie. Kennen lernen im Vorraus garantiert.</div></fieldset></td></tr><tr><td valign="top"><fieldset><legend><b>Dialoginformationen von Ron666</b></legend>
+<form action="" id="kuinf_intern" method="post" name="kuinf_intern">
+<input name="wat" type="hidden" value="kundeninfochange"/>
+<input name="id" type="hidden" value="1025567"/>
+<input name="kunde" type="hidden" value="991124"/>
+<textarea id="kindeninfo_div" name="inhalt" onchange="update_bindung('kuinf_intern','kindeninfo_div')" style="width:95%;height:200px;background:#ffbbbb;font-size:10px;font-family:verdana;">--wichtige Termine Tg/Mo/Ja (Urlaub, KH usw.) ---
+----------------Aktuelles----------------
+
+ _________________________ 
+-Charakter:
+
+-Familie: 
+
+-Kinder:
+
+-Haustiere:
+
+-Hobbys:
+
+-Wohnsituation:
+
+-Mobil:
+ _______________________
+ -letzte beziehung:
+
+-sucht :
+
+-Grösse /kg:
+
+-Augen /haarfarbe: 
+
+-Tattoos:
+
+-Piercings: 
+
+-Körperliche Merkmale:
+_______________________ 
+-MUSIK:
+
+-FILME: 
+
+-Essen :
+
+-Trinken :
+ _______________________ 
+-was mag :
+
+-was nicht mag:
+----------------------------- 
+SEX Vorlieben:
+
+SEX Tabus: 
+
+SONSTIGES: 
+</textarea>
+</form></fieldset></td></tr><tr><td style="height:120px;" valign="top"><fieldset><legend>
+<a href="javascript:void(0);" onclick="document.getElementById('k_image').style.display='block';document.getElementById('k_video').style.display='none';document.getElementById('k_gift').style.display='none';document.getElementById('k_hobby').style.display='none';"><b>Bilder</b></a>
+<a href="javascript:void(0);" onclick="document.getElementById('k_image').style.display='none';document.getElementById('k_video').style.display='block';document.getElementById('k_gift').style.display='none';document.getElementById('k_hobby').style.display='none';"><b>Videos</b></a>
+<a href="javascript:void(0);" onclick="document.getElementById('k_image').style.display='none';document.getElementById('k_video').style.display='none';document.getElementById('k_gift').style.display='block';document.getElementById('k_hobby').style.display='none';"><b>Geschenke</b></a>
+<a href="javascript:void(0);" onclick="document.getElementById('k_image').style.display='none';document.getElementById('k_video').style.display='none';document.getElementById('k_gift').style.display='none';document.getElementById('k_hobby').style.display='block';"><b>Hobbys</b></a>
+</legend>
+<div id="k_image" style="width:95%;height:100px;position:relative;overflow-x: auto; overflow-y:hidden;"><div style="position:absolute;"><table><tr><td><a href="../profilbilder/991124/dbd1988337165a0e7c4be0d81470f545.jpg" rel="lightbox"><img alt="" src="../profilbilder/991124/dbd1988337165a0e7c4be0d81470f545_140.jpg" style="width:80px;height:80px;border:0px;"/></a></td></tr></table></div></div>
+<div id="k_video" style="display:none;width:95%;height:100px;position:relative;overflow-x: auto; overflow-y:hidden;"><div style="position:absolute;"><table><tr></tr></table></div></div>
+<div id="k_gift" style="display:none;width:95%;height:100px;position:relative;overflow-x: auto; overflow-y:hidden;"><div style="position:absolute;"><table><tr></tr></table></div></div>
+<div id="k_hobby" style="display:none;width:95%;height:100px;position:relative;overflow-x: auto; overflow-y:hidden;"><div style="position:absolute;"><table><tr></tr></table></div></div>
+</fieldset></td></tr></table></td><td style="text-align:center;" valign="top"><table cellspacing="0" style="width:500px;">
+<tr>
+<td style="border-bottom:1px #000000 solid;width:200px;"><input id="k_name" onchange="update_short('k_name');" style="border:0px;background:#ddddff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td>
+<td style="border-bottom:1px #000000 solid;text-align:center;"><b>Name</b></td><td style="border-bottom:1px #000000 solid;width:200px;">Gina Held</td></tr>
+<tr>
+<td style="border-bottom:1px #000000 solid;width:200px;"><input id="k_ort" onchange="update_short('k_ort');" style="border:0px;background:#ddddff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td>
+<td style="border-bottom:1px #000000 solid;text-align:center;"><b>Wohnort</b></td><td style="border-bottom:1px #000000 solid;width:200px;"><input id="f_ort" onchange="update_short('f_ort');" style="border:0px;background:#ddddff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td></tr>
+<tr>
+<td style="border-bottom:1px #000000 solid;width:200px;"><input id="k_beruf" onchange="update_short('k_beruf');" style="border:0px;background:#ddddff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td>
+<td style="border-bottom:1px #000000 solid;text-align:center;"><b>Beruf</b></td><td style="border-bottom:1px #000000 solid;width:200px;"><input id="f_beruf" onchange="update_short('f_beruf');" style="border:0px;background:#ddddff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td></tr>
+<tr>
+<td style="border-bottom:1px #000000 solid;width:200px;"><input id="k_arbeitszeit" onchange="update_short('k_arbeitszeit');" style="border:0px;background:#ddddff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td>
+<td style="border-bottom:1px #000000 solid;text-align:center;"><b>Arbeitszeiten</b></td>
+<td style="border-bottom:1px #000000 solid;width:200px;"><input id="f_arbeitszeit" onchange="update_short('f_arbeitszeit');" style="border:0px;background:#ddddff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td>
+</tr>
+<tr>
+<td style="border-bottom:1px #000000 solid;width:200px;"><input id="k_status" onchange="update_short('k_status');" style="border:0px;background:#ddddff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td>
+<td style="border-bottom:1px #000000 solid;text-align:center;"><b>Status</b></td>
+<td style="border-bottom:1px #000000 solid;width:200px;"><input id="f_status" onchange="update_short('f_status');" style="border:0px;background:#ddddff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td>
+</tr><tr>
+<td style="border-bottom:1px #000000 solid;width:200px;"><input id="k_fortschritt" onchange="update_short('k_fortschritt');" style="border:0px;background:#aaaaff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td>
+<td style="border-bottom:1px #000000 solid;text-align:center;"><b>Fortschritt</b></td>
+<td style="border-bottom:1px #000000 solid;width:200px;"><input id="f_fortschritt" onchange="update_short('f_fortschritt');" style="border:0px;background:#ddddff;font-size:10px;height:14px;width:200px;padding:1px;" type="text" value=""/></td>
+</tr>
+<tr>
+<td style="border-bottom:1px #000000 solid;width:200px;">
+<select id="k_geburtstag_d" onchange="update_short('k_geburtstag');" style="font-size:10px;width:45px;border:0px;background:#ddddff;height:20px;padding:1px;"><option value="">DD</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>.
+		<select id="k_geburtstag_m" onchange="update_short('k_geburtstag');" style="font-size:10px;width:45px;border:0px;background:#ddddff;height:20px;padding:1px;"><option value="">MM</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>.
+		<select id="k_geburtstag_y" onchange="update_short('k_geburtstag');" style="font-size:10px;width:60px;border:0px;background:#ddddff;height:20px;padding:1px;"><option value="">YYYY</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option><option value="1959">1959</option><option value="1958">1958</option><option value="1957">1957</option><option value="1956">1956</option><option value="1955">1955</option><option value="1954">1954</option><option value="1953">1953</option><option value="1952">1952</option><option value="1951">1951</option><option value="1950">1950</option><option value="1949">1949</option><option value="1948">1948</option><option value="1947">1947</option><option value="1946">1946</option><option value="1945">1945</option><option value="1944">1944</option><option value="1943">1943</option><option value="1942">1942</option><option value="1941">1941</option><option value="1940">1940</option><option value="1939">1939</option><option value="1938">1938</option><option value="1937">1937</option><option value="1936">1936</option><option value="1935">1935</option><option value="1934">1934</option><option value="1933">1933</option><option value="1932">1932</option><option value="1931">1931</option><option value="1930">1930</option><option value="1929">1929</option><option value="1928">1928</option><option value="1927">1927</option><option value="1926">1926</option><option value="1925">1925</option><option value="1924">1924</option><option value="1923">1923</option><option value="1922">1922</option><option value="1921">1921</option><option value="1920">1920</option><option value="1919">1919</option><option value="1918">1918</option><option value="1917">1917</option><option value="1916">1916</option><option value="1915">1915</option><option value="1914">1914</option><option value="1913">1913</option><option value="1912">1912</option><option value="1911">1911</option><option value="1910">1910</option><option value="1909">1909</option></select>
+</td>
+<td style="border-bottom:1px #000000 solid;text-align:center;"><b>Geburtstag</b></td>
+<td style="border-bottom:1px #000000 solid;width:200px;">05-03-2004</td>
+</tr></table><br/><b>Erstkontakt:</b> 2025-05-07 15:04:04<br/><br/><center><input onclick="window.location.href='p_stupsen.php?wat=back&amp;id=991124&amp;p=1025567'" type="button" value="Stupsen"/></center><br/><fieldset style="width:98%;text-align:left;"><legend><b>Dia Info Ron666 &lt;-&gt; heldginaa</b></legend>
+<form action="" id="dia_info" method="post" name="dia_info">
+<input name="wat" type="hidden" value="info_add"/>
+<input name="id" type="hidden" value="8373234"/>
+<textarea cols="100" id="dia_info_div" name="inhalt" onchange="add_info();" rows="2" style="width:95%;background:#ddddff"></textarea>
+</form>
+<div id="dia_info_view" style="width:95%;height:100px;position:relative;overflow-y: auto; overflow-x:hidden;"></div></fieldset><br/><form action="p_postfach.php" method="post" name="sp" onsubmit="return check();">
+<input name="action" type="hidden" value="send"/>
+<input name="id" type="hidden" value="991124"/>
+<input name="p" type="hidden" value="1025567"/>
+<input name="h" type="hidden" value="c1c8184bcc97b1e0fcd8ee1de4503083"/>
+<input id="tttype" name="tttype" type="hidden" value="0"/>
+<div style="text-align:center"><b>Next action:</b> <input name="nextaction" type="checkbox" value="1"/> <input name="nextactiondate" style="width:120px;" type="text" value="2025-05-08 17:47"/></div>
+<table border="0" width="400">
+<tr><td colspan="2"><input id="titel" maxlength="90" name="titel" style="width:400px;" type="text" value=""/></td></tr>
+<tr><td colspan="2"><textarea cols="50" id="inhalt" name="inhalt" onkeydown="updAvCh.update();" onkeyup="updAvCh.update();" rows="4" style="width:400px;"></textarea></td></tr>
+<tr><td colspan="2" style="text-align:center;font-size:10px;">Still <span id="smsCharAvail">350</span> characters left.</td></tr>
+<tr>
+<td style="text-align:left;width:340px;">
+<input disabled="true" id="sendbutton1" onclick="check(0);" style="width:150px;" type="button" value="Still 5 characters"/> <input disabled="true" id="sendbutton2" onclick="check(1);" style="width:150px;" type="button" value="Still 5 characters"/>
+</td>
+<td style="text-align:right;"><input onclick="smilie_show(10000,0);" style="width:50px;" type="button" value="Smilies"/></td>
+</tr></table></form>
+<br/>
+<div id="smilies" style="display:none;position:relative;"></div>
+<br/><input onclick="window.location.href='p_sendvideo.php?p=1025567&amp;id=991124&amp;action=menu'" style="width:auto;" type="button" value="Send Video"/> <input onclick="window.location.href='p_sendphoto.php?p=1025567&amp;id=991124&amp;action=menu'" style="width:auto;" type="button" value="Sende ein Bild"/> <input onclick="window.location.href='p_geschenk.php?p=1025567&amp;id=991124'" style="width:auto;" type="button" value="Sende ein Geschenk"/> <input onclick="searchtenor();" style="width:auto;" type="button" value="Send GIF"/> <input onclick="window.location.href='?p=1025567&amp;id=991124&amp;action=favorit_on';" style="width:auto;" type="button" value="Zu meinen Favoriten hinzu fügen"/> <input onclick="window.location.href='?p=1025567&amp;id=991124&amp;action=warte_on';" style="width:auto;" type="button" value="Ins Wartezimmer verschieben"/>
+<br/><br/><div id="showpm" style="position:relative;width:100%;"><center><img alt="please wait" src="https://liebesfun.de/pic/wait.gif"/></center></div><br/><script type="text/javascript">
+	var tenorview=0;
+	var tenorsearch='excited';
+	
+	function searchtenor()
+	{
+		tenorview=0;
+		
+		new Ajax.Request(
+			'p_postfach.php?ajax=tenor&pos='+tenorview+'&kat='+encodeURI(tenorsearch), 
+			{
+				method: 'get',
+				encoding: 'ISO-8859-1', 
+				onSuccess: function(transport)
+				{
+					out="<div id=\"tenorCard\" style=\"width:100%;flex: 1 1 auto;text-align:center;\"><div><input id='tenorsearchvalue' placeholder=\"Search GIF...\" class=\"form-control\" style='width:80%;display:inline-block;'> <button onclick=\"if(document.getElementById('tenorsearchvalue').value!='')tenorsearch=document.getElementById('tenorsearchvalue').value;searchtenor();\" class=\"btn btn-primary\" style='display:inline-block;'>Search</button></div><div id='tenorcontent' style='height:60vh;overflow-y:auto;'>"+transport.responseText+"</div></div></div>";
+					document.getElementById('LoadMessage').style.display='block';
+					document.getElementById('messagetext').innerHTML=out;
+					document.getElementById('error').style.display='none';
+					document.getElementById('message').style.display='block';
+					document.getElementById('message').style.marginTop='0px';
+					document.getElementById('message').style.top='10px';
+				}
+			}
+		)
+	}
+
+	function moretenor()
+	{
+		tenorview+=20;
+		new Ajax.Request(
+			'p_postfach.php?ajax=tenor&pos='+tenorview+'&kat='+encodeURI(tenorsearch), 
+			{
+				method: 'get',
+				encoding: 'ISO-8859-1', 
+				onSuccess: function(transport)
+				{
+					document.getElementById('tenorcontent').innerHTML+=transport.responseText;
+				}
+			}
+		)
+	}
+
+	function sendtenor(id)
+	{
+		window.location.href='p_postfach.php?p=1025567&id=991124&action=tenorsend&h=c1c8184bcc97b1e0fcd8ee1de4503083&inhalt='+id;
+	}
+	</script></td><td style="text-align:right;width:350px;" valign="top"><table border="0" style="width:350px;float:right;">
+<tr><td>
+<table style="width:100%">
+<tr>
+<td style="width:60px;position:relative;"><img alt="premium" src="https://liebesfun.de/pic/vip_big.png" style="width:70%;top:0px;left:-50px;position:absolute;"/><img alt="" border="0" src="../profilbilder/1025567/dcd3f46493b6a718b542a214cc694086_140.jpg" style="width:60px;height:60px;"/></td>
+<td style="text-align:right"><input onclick="window.open('edit_user.php?id=1025567','_blank');" type="button" value="Edit"/> <b style="font-size:14px;color:#000000;">(PM 2)</b> <a href="javascript:void(0);" onclick="openblock('f_detail');"><span style="color:#ff0088;font-weight:bold;font-size:14px;">heldginaa (21)</span></a><br/><br/>
+<center><div style="background:#ff8888;"><img alt="" src="https://liebesfun.de/pic/fahne_105.gif"/> 04 <input onclick="suchort();" type="button" value="search"/></div>
+<script type="text/javascript"><!--
+		function suchort()
+		{
+			document.getElementById('messagetext').innerHTML="Bitte wähle ein Wohnort<br /><textarea rows='4'cols='60'>04916-Schönewalde bei Herzberg, Elster (93 km)\r\n04928-Schraden bei Elsterwerda (92 km)\r\n04932-Großthiemig (91 km)\r\n04936-Hohenbucko (89 km)\r\n04936-Lebusa (88 km)\r\n04928-Plessa (88 km)\r\n04932-Hirschfeld bei Elsterwerda (87 km)\r\n04936-Fichtwald (86 km)\r\n04934-Hohenleipisch (84 km)\r\n04932-Gröden (84 km)\r\n04936-Schlieben (82 km)\r\n04932-Merzdorf bei Elsterwerda (81 km)\r\n04910-Elsterwerda (81 km)\r\n04932-Röderland (79 km)\r\n04936-Kremitzaue (77 km)\r\n04924-Bad Liebenwerda (74 km)\r\n04938-Uebigau-Wahrenbrück (72 km)\r\n04924-Uebigau-Wahrenbrück (72 km)\r\n04916-Herzberg (Elster) (71 km)\r\n04895-Falkenberg / Elster (66 km)\r\n04741-Roßwein (64 km)\r\n04741-Niederstriegis (61 km)\r\n04720-Zschaitz-Ottewig (61 km)\r\n04720-Mochau bei Döbeln (61 km)\r\n04931-Mühlberg / Elbe (60 km)\r\n04720-Döbeln (58 km)\r\n04749-Ostrau, Sachsen (57 km)\r\n04720-Ebersbach bei Döbeln (57 km)\r\n04886-Arzberg bei Torgau (56 km)\r\n04720-Ziegra-Knobelsdorf (56 km)\r\n04626-Thonhausen bei Schmölln (56 km)\r\n04626-Jonaswalde (56 km)\r\n04626-Heyersdorf (56 km)\r\n04626-Heukewalde (56 km)\r\n04886-Beilrode (55 km)\r\n04758-Liebschützberg (55 km)\r\n04886-Großtreben-Zwethau (54 km)\r\n04874-Belgern bei Torgau (54 km)\r\n04736-Waldheim, Sachsen (54 km)\r\n04626-Vollmershain (54 km)\r\n04769-Naundorf bei Oschatz (53 km)\r\n04758-Naundorf bei Oschatz (53 km)\r\n04758-Cavertitz (53 km)\r\n04626-Posterstein (53 km)\r\n04626-Nöbdenitz (52 km)\r\n04758-Oschatz (51 km)\r\n04720-Großweitzschen (51 km)\r\n04657-Penig (51 km)\r\n04639-Gößnitz, Thüringen (50 km)\r\n04626-Löbichau (50 km)\r\n04618-Göpfersdorf (50 km)\r\n04880-Elsnig (49 km)\r\n04860-Torgau (49 km)\r\n04769-Mügeln bei Oschatz (49 km)\r\n04746-Hartha bei Döbeln (49 km)\r\n04703-Hartha bei Döbeln (49 km)\r\n04639-Ponitz bei Schmölln, Thüringen (49 km)\r\n04626-Schmölln, Thüringen (49 km)\r\n04618-Jückelberg (49 km)\r\n04880-Dommitzsch (48 km)\r\n04860-Zinna (48 km)\r\n04626-Wildenbörten (48 km)\r\n04618-Ziegelheim (48 km)\r\n04889-Pflückuff bei Torgau (47 km)\r\n04860-Pflückuff bei Torgau (47 km)\r\n04769-Sornzig-Ablaß (47 km)\r\n04626-Drogen (47 km)\r\n04618-Frohnsdorf bei Altenburg (47 km)\r\n04626-Lumpzig (45 km)\r\n04618-Langenleuba-Niederhain (45 km)\r\n04603-Saara bei Schmölln, Thüringen (45 km)\r\n04880-Trossin (44 km)\r\n04860-Dreiheide (44 km)\r\n04703-Bockelwitz (44 km)\r\n04626-Göllnitz bei Schmölln (44 km)\r\n04626-Altkirchen bei Schmölln (44 km)\r\n04774-Dahlen, Sachsen (43 km)\r\n04703-Leisnig (43 km)\r\n04657-Narsdorf (43 km)\r\n04626-Dobitschen (43 km)\r\n04668-Thümmlitzwalde (42 km)\r\n04626-Mehna (42 km)\r\n04617-Naundorf bei Altenburg (42 km)\r\n04889-Schildau, Gneisenaustadt (41 km)\r\n04779-Wermsdorf (41 km)\r\n04603-Nobitz (41 km)\r\n04603-Göhren bei Altenburg, Thüringen (41 km)\r\n04655-Kohren-Sahlis (40 km)\r\n04643-Geithain (40 km)\r\n04617-Tegkwitz (40 km)\r\n04617-Starkenberg (40 km)\r\n04680-Zschadraß (39 km)\r\n04680-Colditz (39 km)\r\n04617-Monstab (39 km)\r\n04600-Altenburg, Thüringen (39 km)\r\n04688-Mutzschen (38 km)\r\n04617-Lödla (38 km)\r\n04617-Großröda (38 km)\r\n04838-Mockrehna (36 km)\r\n04617-Rositz (36 km)\r\n04603-Windischleuba (36 km)\r\n04808-Falkenhain bei Wurzen (35 km)\r\n04654-Frohburg (35 km)\r\n04617-Kriebitzsch (35 km)\r\n04617-Gerstenberg (35 km)\r\n04617-Fockendorf bei Altenburg (33 km)\r\n04610-Meuselwitz, Thüringen (33 km)\r\n04849-Bad Düben (32 km)\r\n04808-Kühren-Burkartshain (32 km)\r\n04651-Eulatal (32 km)\r\n04617-Treben bei Altenburg (32 km)\r\n04610-Wintersdorf bei Meuselwitz (32 km)\r\n04838-Doberschütz (31 km)\r\n04808-Hohburg bei Wurzen (31 km)\r\n04685-Nerchau (31 km)\r\n04668-Großbothen (31 km)\r\n04617-Haselbach bei Altenburg (30 km)\r\n04838-Laußig (29 km)\r\n04565-Regis-Breitingen (29 km)\r\n04509-Löbnitz bei Delitzsch (29 km)\r\n04668-Großbardau (28 km)\r\n04651-Bad Lausick (28 km)\r\n04687-Trebsen / Mulde (27 km)\r\n04668-Grimma (27 km)\r\n04613-Lucka, Thüringen (27 km)\r\n04808-Wurzen (26 km)\r\n04552-Borna bei Leipzig (26 km)\r\n04574-Deutzen (25 km)\r\n04838-Zschepplin (24 km)\r\n04828-Bennewitz bei Wurzen (24 km)\r\n04808-Thallwitz (24 km)\r\n04567-Kitzscher (24 km)\r\n04552-Lobstädt (24 km)\r\n04668-Otterwisch (23 km)\r\n04523-Elstertrebnitz (23 km)\r\n04838-Eilenburg (22 km)\r\n04539-Groitzsch bei Pegau (22 km)\r\n04668-Parthenstein bei Grimma (21 km)\r\n04523-Pegau (21 km)\r\n04509-Schönwölkau (21 km)\r\n04509-Neukyhna (21 km)\r\n04509-Delitzsch (21 km)\r\n04575-Neukieritzsch (20 km)\r\n04579-Espenhain (19 km)\r\n04827-Machern bei Wurzen (18 km)\r\n04509-Wiedemar (18 km)\r\n04838-Jesewitz (17 km)\r\n04821-Brandis bei Wurzen (17 km)\r\n04683-Naunhof bei Grimma (17 km)\r\n04683-Belgershain (17 km)\r\n04460-Kitzen bei Leipzig (17 km)\r\n04571-Rötha (16 km)\r\n04564-Böhlen bei Leipzig (16 km)\r\n04509-Zwochau bei Delitzsch (16 km)\r\n04509-Krostitz (15 km)\r\n04442-Zwenkau (14 km)\r\n04420-Großlehna (14 km)\r\n04463-Großpösna (12 km)\r\n04451-Borsdorf an der Parthe (12 km)\r\n04435-Schkeuditz (12 km)\r\n04519-Rackwitz (11 km)\r\n04509-Rackwitz (11 km)\r\n04420-Markranstädt (11 km)\r\n04425-Taucha bei Leipzig (10 km)\r\n04416-Markkleeberg (7 km)\r\n04357-Leipzig (0 km)\r\n04356-Leipzig (0 km)\r\n04349-Leipzig (0 km)\r\n04347-Leipzig (0 km)\r\n04329-Leipzig (0 km)\r\n04319-Leipzig (0 km)\r\n04318-Leipzig (0 km)\r\n04317-Leipzig (0 km)\r\n04316-Leipzig (0 km)\r\n04315-Leipzig (0 km)\r\n04299-Leipzig (0 km)\r\n04289-Leipzig (0 km)\r\n04288-Leipzig (0 km)\r\n04279-Leipzig (0 km)\r\n04277-Leipzig (0 km)\r\n04275-Leipzig (0 km)\r\n04249-Leipzig (0 km)\r\n04229-Leipzig (0 km)\r\n04209-Leipzig (0 km)\r\n04207-Leipzig (0 km)\r\n04205-Leipzig (0 km)\r\n04179-Leipzig (0 km)\r\n04178-Leipzig (0 km)\r\n04177-Leipzig (0 km)\r\n04159-Leipzig (0 km)\r\n04158-Leipzig (0 km)\r\n04157-Leipzig (0 km)\r\n04155-Leipzig (0 km)\r\n04129-Leipzig (0 km)\r\n04109-Leipzig (0 km)\r\n04107-Leipzig (0 km)\r\n04105-Leipzig (0 km)\r\n</textarea><br />";
+			document.getElementById('LoadMessage').style.display='block';
+			document.getElementById('message').style.display='block';
+		}
+		//--></script></center></td>
+</tr></table>
+<div id="f_detail" style="width:100%;display:none;">
+<table>
+<tr>
+<td style="width:140px;text-align:center;" valign="middle"><img alt="" src="../profilbilder/1025567/dcd3f46493b6a718b542a214cc694086_140.jpg"/><br/>
+<table width="100%">
+<tr><td><b>Views: </b></td><td style="text-align:right;">143</td></tr>
+<tr><td><b>Rating:</b></td><td style="text-align:right;">2</td></tr>
+<tr><td><b>Points:</b></td><td style="text-align:right;">4.5</td></tr>
+<tr><td><b>Score:</b></td><td style="text-align:right;">170</td></tr>
+</table>
+</td>
+<td style="text-align:right;" valign="top">
+<table style="width:100%">
+<tr><td><b>Name</b></td><td>Gina Held</td></tr>
+<tr><td><b>Geschlecht</b></td><td>weiblich</td></tr>
+<tr><td width="90"><b>Alter</b></td><td>21 (Fische)</td></tr>
+<tr style="background:#ff8888"><td><b>Wohnort</b></td><td><img alt="" src="https://liebesfun.de/pic/fahne_105.gif"/> 04</td></tr>
+<tr><td><b>Beruf:</b></td><td></td></tr>
+<tr><td><b>Mitglied seit</b></td><td>09.04.2025</td></tr>
+<tr><td><b>Geburtstag</b></td><td>2004-03-05</td></tr>
+<tr><td><b></b></td><td>Männer</td></tr><tr><td><b>Größe</b></td><td>168 cm</td></tr>
+<tr><td><b>Haarfarbe</b></td><td>chestnut</td></tr>
+<tr><td><b>Augenfarbe</b></td><td>green-blue</td></tr>
+<tr><td><b>Raucher</b></td><td>yes</td></tr>
+</table>
+</td></tr>
+</table></div></td></tr><tr><td colspan="2" valign="top"><fieldset><legend><b>Flirt Text</b></legend><div style="width:310px;height:100px;overflow-x: none; overflow-y:auto;font-size:10px;">Hallo, ich bin Gina, 21 Jahre alt und fange gerade an, das Leben zu genießen, aber ich habe keinen Freund, mit dem ich Spaß haben kann, also habe ich nicht viel Spaß.</div></fieldset></td></tr><tr><td colspan="2" valign="top"><fieldset><legend><b>Dialoginformationen von heldginaa</b></legend>
+<form action="" id="dialogprofil" method="post" name="dialogprofil">
+<input name="wat" type="hidden" value="dialogprofilchange"/>
+<input name="id" type="hidden" value="1025567"/>
+<input name="kunde" type="hidden" value="991124"/>
+<textarea id="dialogprofil_div" name="inhalt" onchange="update_bindung('dialogprofil','dialogprofil_div')" style="width:95%;height:200px;background:#ffbbbb;font-size:10px;">--wichtige Termine Tg/Mo/Ja (Urlaub, KH usw.) ---
+----------------Aktuelles----------------
+
+ _________________________ 
+-Charakter:
+
+-Familie: 
+
+-Kinder:
+
+-Haustiere:
+
+-Hobbys:
+
+-Wohnsituation:
+
+-Mobil:
+ _______________________
+ -letzte beziehung:
+
+-sucht :
+
+-Grösse /kg:
+
+-Augen /haarfarbe: 
+
+-Tattoos:
+
+-Piercings: 
+
+-Körperliche Merkmale:
+_______________________ 
+-MUSIK:
+
+-FILME: 
+
+-Essen :
+
+-Trinken :
+ _______________________ 
+-was mag :
+
+-was nicht mag:
+----------------------------- 
+SEX Vorlieben:
+
+SEX Tabus: 
+
+SONSTIGES: 
+</textarea>
+</form></fieldset></td></tr><tr><td colspan="2" valign="top"><fieldset><legend><b>Globale Info von heldginaa</b></legend>
+<form action="" id="internprofil" method="post" name="internprofil">
+<input name="wat" type="hidden" value="internprofilchange"/>
+<input name="id" type="hidden" value="1025567"/>
+<textarea id="internprofil_div" name="inhalt" onchange="update_bindung('internprofil','internprofil_div')" style="width:95%;height:150px;background:#ffbbbb;font-size:10px;"></textarea>
+</form></fieldset></td></tr><tr><td colspan="2" style="height:120px;" valign="top"><fieldset><legend>
+<a href="javascript:void(0);" onclick="document.getElementById('f_image').style.display='block';document.getElementById('f_video').style.display='none';document.getElementById('f_gift').style.display='none';document.getElementById('f_hobby').style.display='none';"><b>Bilder</b></a>
+<a href="javascript:void(0);" onclick="document.getElementById('f_image').style.display='none';document.getElementById('f_video').style.display='block';document.getElementById('f_gift').style.display='none';document.getElementById('f_hobby').style.display='none';"><b>Videos</b></a>
+<a href="javascript:void(0);" onclick="document.getElementById('f_image').style.display='none';document.getElementById('f_video').style.display='none';document.getElementById('f_gift').style.display='block';document.getElementById('f_hobby').style.display='none';"><b>Geschenke</b></a>
+<a href="javascript:void(0);" onclick="document.getElementById('f_image').style.display='none';document.getElementById('f_video').style.display='none';document.getElementById('f_gift').style.display='none';document.getElementById('f_hobby').style.display='block';"><b>Hobbys</b></a>
+</legend>
+<div id="f_image" style="width:100%;height:100px;position:relative;overflow-x: auto; overflow-y:hidden;"><div style="position:absolute;"><table><tr><td><a href="https://liebesfun.de/profilbilder/1025567/37f3faafca543892ebe31ae2eb8b5685.jpg" rel="lightbox"><img alt="" src="https://liebesfun.de/profilbilder/1025567/37f3faafca543892ebe31ae2eb8b5685_140.jpg" style="width:80px;height:80px;border:2px #080 solid;"/></a></td><td><a href="https://liebesfun.de/profilbilder/1025567/0448ed705495f680b79f382646b461e0.jpg" rel="lightbox"><img alt="" src="https://liebesfun.de/profilbilder/1025567/0448ed705495f680b79f382646b461e0_140.jpg" style="width:80px;height:80px;border:2px #080 solid;"/></a></td><td><a href="https://liebesfun.de/profilbilder/1025567/3acc8297acdc3ff3673477ecc81b443d.jpg" rel="lightbox"><img alt="" src="https://liebesfun.de/profilbilder/1025567/3acc8297acdc3ff3673477ecc81b443d_140.jpg" style="width:80px;height:80px;border:2px #080 solid;"/></a></td><td><a href="https://liebesfun.de/profilbilder/1025567/c6a6ae23d1ee96ca0ebca4dd8668afce.jpg" rel="lightbox"><img alt="" src="https://liebesfun.de/profilbilder/1025567/c6a6ae23d1ee96ca0ebca4dd8668afce_140.jpg" style="width:80px;height:80px;border:2px #080 solid;"/></a></td><td><a href="https://liebesfun.de/profilbilder/1025567/26f5fbdcc2dd11d842bad70d206eb4fe.jpg" rel="lightbox"><img alt="" src="https://liebesfun.de/profilbilder/1025567/26f5fbdcc2dd11d842bad70d206eb4fe_140.jpg" style="width:80px;height:80px;border:2px #080 solid;"/></a></td><td><a href="https://liebesfun.de/profilbilder/1025567/dcd3f46493b6a718b542a214cc694086.jpg" rel="lightbox"><img alt="" src="https://liebesfun.de/profilbilder/1025567/dcd3f46493b6a718b542a214cc694086_140.jpg" style="width:80px;height:80px;border:2px #080 solid;"/></a></td><td><a href="https://liebesfun.de/profilbilder/1025567/710d5fc3b574c1a78f9a593177af72b7.jpg" rel="lightbox"><img alt="" src="https://liebesfun.de/profilbilder/1025567/710d5fc3b574c1a78f9a593177af72b7_140.jpg" style="width:80px;height:80px;border:2px #080 solid;"/></a></td><td><a href="https://liebesfun.de/profilbilder/1025567/562f9109d8d2e1d91a9c647a5c5061ee.jpg" rel="lightbox"><img alt="" src="https://liebesfun.de/profilbilder/1025567/562f9109d8d2e1d91a9c647a5c5061ee_140.jpg" style="width:80px;height:80px;border:2px #080 solid;"/></a></td><td><a href="https://liebesfun.de/profilbilder/1025567/cc1e97b10917c7c1d9454ea9deab9d57.jpg" rel="lightbox"><img alt="" src="https://liebesfun.de/profilbilder/1025567/cc1e97b10917c7c1d9454ea9deab9d57_140.jpg" style="width:80px;height:80px;border:2px #080 solid;"/></a></td><td><a href="https://liebesfun.de/profilbilder/1025567/6b44b3e106851ec0d30b762f59d711a9.jpg" rel="lightbox"><img alt="" src="https://liebesfun.de/profilbilder/1025567/6b44b3e106851ec0d30b762f59d711a9_140.jpg" style="width:80px;height:80px;border:2px #080 solid;"/></a></td></tr></table></div></div>
+<div id="f_video" style="display:none;width:100%;height:100px;position:relative;overflow-x: auto; overflow-y:hidden;"><div style="position:absolute;"><table><tr></tr></table></div></div>
+<div id="f_gift" style="display:none;width:100%;height:100px;position:relative;overflow-x: auto; overflow-y:hidden;"><div style="position:absolute;"><table><tr></tr></table></div></div>
+<div id="f_hobby" style="display:none;width:95%;height:100px;position:relative;overflow-x: auto; overflow-y:hidden;"><div style="position:absolute;"><table><tr><div style="float: left; font-size: 16px; margin-right: 10px;"><a class="glyphicon glyphicon-pool" href="javascript:void(0);" title="Geht gerne Schwimmen"></a></div><div style="float: left; font-size: 16px; margin-right: 10px;"><a class="glyphicon glyphicon-magnet" href="javascript:void(0);" title="Geht gern Reiten"></a></div><div style="float: left; font-size: 16px; margin-right: 10px;"><a class="glyphicon glyphicon-globe-af" href="javascript:void(0);" title="Reist gerne"></a></div><div style="float: left; font-size: 16px; margin-right: 10px;"><a class="glyphicon glyphicon-classic-hammer" href="javascript:void(0);" title="Zu den Hobbies gehört das Handwerken"></a></div><div style="float: left; font-size: 16px; margin-right: 10px;"><a class="glyphicon glyphicon-gamepad" href="javascript:void(0);" title="Spielt gern Computerspiele"></a></div><div style="float: left; font-size: 16px; margin-right: 10px;"><a class="glyphicon glyphicon-music" href="javascript:void(0);" title="Hört gern Musik"></a></div><div style="float: left; font-size: 16px; margin-right: 10px;"><a class="glyphicon glyphicon-fishes" href="javascript:void(0);" title="Hat ein Aquarium"></a></div></tr></table></div></div>
+</fieldset></td></tr></table></td></tr></table>
+<script type="text/javascript"><!--
+	
+	
+	//~~~~~~~~~~~~~~~ update bindung memos ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	function update_short(zzwas)
+	{
+		if(zzwas=='k_geburtstag')
+		{
+			if(document.getElementById('k_geburtstag_d').value!='' && document.getElementById('k_geburtstag_m').value!='' && document.getElementById('k_geburtstag_y').value!='')
+			{
+				document.getElementById('k_geburtstag_d').style.backgroundColor='#eeeeee';
+				document.getElementById('k_geburtstag_m').style.backgroundColor='#eeeeee';
+				document.getElementById('k_geburtstag_y').style.backgroundColor='#eeeeee';
+				new Ajax.Request(
+					'p_postfach.php?wat=short&r='+zzwas+'&b=8373234&wert='+document.getElementById('k_geburtstag_y').value+'-'+document.getElementById('k_geburtstag_m').value+'-'+document.getElementById('k_geburtstag_d').value, 
+					{
+					method: 'get',
+					encoding: 'ISO-8859-1',		
+					onFailure: function(transport){alert('fail connection')},
+					onComplete: function(transport)
+					{
+						if(transport.responseText=='ok')
+						{
+							document.getElementById('k_geburtstag_m').style.backgroundColor='#ffffaa';
+							document.getElementById('k_geburtstag_d').style.backgroundColor='#ffffaa';
+							document.getElementById('k_geburtstag_y').style.backgroundColor='#ffffaa';
+						}
+					}
+					})
+				return false;
+			}
+		}
+		else
+		{
+			document.getElementById(zzwas).style.backgroundColor='#eeeeee';
+			new Ajax.Request(
+				'p_postfach.php?wat=short&r='+zzwas+'&b=8373234&wert='+encodeURI(document.getElementById(zzwas).value), 
+				{
+				method: 'get',
+				encoding: 'ISO-8859-1',		
+				onFailure: function(transport){alert('fail connection')},
+				onComplete: function(transport)
+				{
+					if(transport.responseText=='ok')document.getElementById(zzwas).style.backgroundColor='#ffffaa';
+				}
+				})
+			return false;
+		}
+	}
+
+
+
+	//~~~~~~~~~~~~~~~ update bindung memos ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	function update_bindung(fformular,div)
+	{
+		document.getElementById(div).style.backgroundColor='#eeeeee';
+		var pars = $(fformular).serialize();
+		new Ajax.Request(
+			'p_postfach.php', 
+			{
+			method: 'post',
+			encoding: 'ISO-8859-1',		
+			parameters: pars, 
+			onFailure: function(transport){alert('fail connection')},
+			onComplete: function(transport)
+			{
+				if(transport.responseText=='ok')document.getElementById(div).style.backgroundColor='#ffffaa';
+			}
+			})
+		return false;
+	}
+	
+	//~~~~~~~~~~~~~~~ add info memos ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	function add_info()
+	{
+		document.getElementById('dia_info_div').style.background='#eeeeee';
+		var pars = $('dia_info').serialize();
+		new Ajax.Request(
+			'p_postfach.php', 
+			{
+			method: 'post',
+			encoding: 'ISO-8859-1',		
+			parameters: pars, 
+			onFailure: function(transport){alert('fail connection')},
+			onComplete: function(transport)
+			{
+				if(transport.responseText!='fail')
+				{
+					document.getElementById('dia_info_view').innerHTML=transport.responseText;
+					document.getElementById('dia_info_div').style.background='#ddddff';
+					document.getElementById('dia_info_div').value='';
+				}
+			}
+			})
+		return false;
+	}
+
+	//~~~~~~~~~~~~~~~ clear info memos ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	function clear_info(id)
+	{
+		new Ajax.Request(
+			'p_postfach.php?wat=info_clear&id='+id, 
+			{
+			method: 'get',
+			encoding: 'ISO-8859-1',		
+			onFailure: function(transport){alert('fail connection')},
+			onComplete: function(transport)
+			{
+				if(transport.responseText!='fail')
+				{
+					document.getElementById('dia_info_view').innerHTML=transport.responseText;
+					document.getElementById('dia_info_div').style.background='#ddddff';
+					document.getElementById('dia_info_div').value='';
+				}
+			}
+			})
+		return false;
+	}
+
+	//~~~~~~~~~~~~~~~ give info memos ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	function give_info(id)
+	{
+		new Ajax.Request(
+			'p_postfach.php?wat=info_give&id='+id, 
+			{
+			method: 'get',
+			encoding: 'ISO-8859-1',		
+			onFailure: function(transport){alert('fail connection')},
+			onComplete: function(transport)
+			{
+				if(transport.responseText!='fail')
+				{
+					document.getElementById('infos_'+id).innerHTML=transport.responseText;
+				}
+			}
+			})
+		return false;
+	}
+
+	//~~~~~~~~~~~~~~~ edit info memos ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	function edit_info(id)
+	{
+		document.getElementById('dia_info_text_'+id).style.background='#eeeeee';
+		var pars = $('dia_info_edit_'+id).serialize();
+		new Ajax.Request(
+			'p_postfach.php', 
+			{
+			method: 'post',
+			encoding: 'ISO-8859-1',		
+			parameters: pars, 
+			onFailure: function(transport){alert('fail connection')},
+			onComplete: function(transport)
+			{
+				if(transport.responseText!='fail')
+				{
+					document.getElementById('dia_info_view').innerHTML=transport.responseText;
+				}
+			}
+			})
+		return false;
+	}
+
+
+
+	//~~~~~~~~~~~~~~~ block on off ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	function openblock(block)
+	{
+		if(document.getElementById(block).style.display=='none')document.getElementById(block).style.display='block';
+		else document.getElementById(block).style.display='none';
+	}
+	
+	
+	
+	function insert_smilie(w)
+	{
+		document.getElementById('inhalt').value+=w+' ';
+		updAvCh.update();
+		//document.getElementById('smilies').style.display='none';
+		//document.getElementById('inhalt').focus();
+	}
+
+	function smilie_show(rub,seite)
+	{
+		new Ajax.Request('p_postfach.php?p=1025567&ajax=smilie&kat='+rub+'&seite='+seite+'&app=', {
+		  encoding: 'ISO-8859-1',onComplete: function(transport){
+			if (200 == transport.status)
+				document.getElementById('smilies').innerHTML=transport.responseText;
+			}
+		})
+		document.getElementById('smilies').style.display='block';
+	}
+
+	function block_check()
+	{
+		document.getElementById('LoadMessage').style.display='block';
+		document.getElementById('messagetext').innerHTML="<center>Willst du Ron666 wirklich blockieren?<br /><br /><table width='200'><tr><td style='text-align:center;'><input type='button' value='JA' onclick=\"window.location.href='?action=blocked&amp;p=1025567&amp;id=991124';\" /></td><td style='text-align:center;'><input type='button' value='NEIN' onclick=\"document.getElementById('LoadMessage').style.display='none';document.getElementById('message').style.display='none';\" /></td></tr></table></center>";
+		document.getElementById('message').style.display='block';
+	}
+
+
+	function view_fav(code,link)
+	{
+		if(link=='app')document.getElementById('fav_bild').innerHTML="<span style='font-size:24px'>"+code+"</span>";
+		else document.getElementById('fav_bild').innerHTML="<img src='"+link+"' alt='' />";
+		document.getElementById('fav_code').value=code;
+		document.getElementById('fav_link').value=link;
+	}
+	
+	function add_fav()
+	{
+		code=document.getElementById('fav_code').value;
+		link=document.getElementById('fav_link').value;
+		if(code!='' && link!='')
+		{
+			document.getElementById('fav_bild').innerHTML="wird gespeichert...";
+			new Ajax.Request('p_postfach.php?ajax=add_fav&code='+encodeURI(code)+'&link='+encodeURI(link), {
+			  encoding: 'ISO-8859-1',onComplete: function(transport){
+				if (200 == transport.status)
+					document.getElementById('fav_bild').innerHTML="<img src='"+link+"' alt='' />";
+				}
+			})
+		}
+	}
+	function del_fav()
+	{
+		code=document.getElementById('fav_code').value;
+		if(code!='')
+		{
+			document.getElementById('fav_bild').innerHTML="is being deleted...";
+			new Ajax.Request('p_postfach.php?ajax=del_fav&code='+encodeURI(code), {
+			  encoding: 'ISO-8859-1',onComplete: function(transport){
+				if (200 == transport.status)
+					document.getElementById('fav_bild').innerHTML="has been deleted!";
+				}
+			})
+		}
+	}
+
+	function check(tttype)
+	{
+		document.getElementById('tttype').value=tttype;
+		if(document.getElementById('inhalt').value=='')
+		{
+			document.getElementById('LoadMessage').style.display='block';
+			document.getElementById('errormessage').innerHTML="Eine Nachricht ohne Inhalt macht kein Sinn, oder?";
+			document.getElementById('error').style.display='block';
+			document.getElementById('error').focus();
+			return false;
+		}
+		document.sp.submit();
+		//document.getElementById('titel').value='';
+		//document.getElementById('inhalt').value='';
+		document.getElementById('sendbutton1').style.display='none';
+		document.getElementById('sendbutton2').style.display='none';
+	}
+
+	function clear_message(user)
+	{
+		new Ajax.Request('p_postfach.php?p=1025567&ajax=clear_message&id='+user, {
+		  encoding: 'ISO-8859-1',onComplete: function(transport){
+			if (200 == transport.status)
+			  if(transport.responseText == 'success' )
+			  {
+				document.getElementById('mes_'+user).style.display='none';
+			  }
+			  if(transport.responseText == 'fail' )
+			  {
+				document.getElementById('LoadMessage').style.display='block';
+				document.getElementById('errormessage').innerHTML="This message was not found!";
+				document.getElementById('error').style.display='block';
+			  }
+			}
+		})
+	}
+
+	function alert_message(pm)
+	{
+		document.getElementById('LoadMessage').style.display='block';
+		document.getElementById('errormessage').innerHTML="<center><b>Anonyme Meldung</b><br />Welches Fehlverhalten liegt hier vor:<br /><br /><textarea cols=60 rows=4 name='alert_info' id='alert_info'></textarea><br /><br />  <input type='button' value='Absenden' onclick=\"alert_message_send("+pm+",alert_info.value);\" /><br /><br /></center>";
+		document.getElementById('error').style.display='block';
+		document.getElementById('error').focus();
+	}
+
+	function alert_message_send(pm,info)
+	{
+		new Ajax.Request('p_postfach.php?p=1025567&ajax=alert_message&id='+pm+'&info='+encodeURIComponent(info), {
+		  encoding: 'ISO-8859-1',onComplete: function(transport){
+			if (200 == transport.status)
+			  if(transport.responseText == 'success' )
+			  {
+				document.getElementById('alert_'+pm).style.display='none';
+				document.getElementById('LoadMessage').style.display='none';
+				document.getElementById('error').style.display='none';
+			  }
+			}
+		})
+	}
+
+	function next_msg(user,start)
+	{
+		new Ajax.Request('p_postfach.php?p=1025567&ajax=next_message&id='+user+'&start='+start, {
+		  encoding: 'ISO-8859-1',onComplete: function(transport){
+		  if(start==0)document.getElementById('showpm').innerHTML='';
+		  ////////////document.getElementById('showpm').innerHTML=transport.responseText+document.getElementById('showpm').innerHTML;
+		  document.getElementById('showpm').innerHTML+=transport.responseText;
+		  //////////////document.getElementById('showpm_window').scrollIntoView(true);
+		  //var xfx=document.getElementById('showpm');xfx.scrollTop = xfx.scrollHeight;
+		  //document.getElementById('showpm_window').scrollTo(0,500);
+		  /////////////document.getElementById('end').focus();
+		  /////////////document.getElementById('inhalt').focus();
+		  //alert('heigh:'+document.getElementById('showpm').scrollHeight);
+		  
+			
+		  }
+		})
+	}
+
+
+	var updAvCh = new UpdateAvailChar("inhalt", "#SMSLENGTH#");
+	function UpdateAvailChar (sourceElId, textPattern) {
+		lang=350;
+		min=5;
+		this.sourceElId = sourceElId;
+		this.textPattern = textPattern;
+
+		this.update = function () {
+			var sourceEl = document.getElementById(this.sourceElId);
+			if ( (typeof(sourceEl) == "undefined") || (sourceEl == null) ) {
+				return;
+			}
+			var smsText = document.getElementById(sourceElId).value;
+			var smsLength;
+			if (typeof(smsText) != "undefined") {
+				smsLength = smsText.length;
+			} else {
+				smsLength = 0;
+			}
+			/*
+			if (smsLength > lang) {
+				document.getElementById(sourceElId).value = smsText.substr(0, lang);
+				smsLength = lang;
+			}
+			*/
+			document.getElementById("smsCharAvail").innerHTML = this.textPattern.replace(/#SMSLENGTH#/, (lang - smsLength)+"");
+			if(smsLength>=min)
+			{
+				document.getElementById('sendbutton1').disabled=false;
+				document.getElementById('sendbutton1').value='Sende und weiter';
+				document.getElementById('sendbutton2').disabled=false;
+				document.getElementById('sendbutton2').value='Senden';
+			}
+			else
+			{
+				document.getElementById('sendbutton1').disabled=true;
+				document.getElementById('sendbutton1').value='Still '+(min-smsLength)+' characters';
+				document.getElementById('sendbutton2').disabled=true;
+				document.getElementById('sendbutton2').value='Still '+(min-smsLength)+' characters';
+			}
+		}
+	}
+	
+	next_msg(991124,0); 
+	document.getElementById('inhalt').focus();
+
+	function chatgpttranslate(id)
+	{
+		a=document.getElementById('body_'+id).innerHTML;
+		new Ajax.Request('../chatgpt_translate.php?from=German&to=German&text='+encodeURIComponent(a), {
+		  encoding: 'ISO-8859-1',onComplete: function(transport){
+			if (200 == transport.status)
+			{
+				document.getElementById('body_'+id).innerHTML+='<br />-----------------------------------<br />'+transport.responseText;
+			}
+			}
+		});
+		
+	}
+
+	var temp_inhalt='';
+	
+	function answertranslate()
+	{
+		if(temp_inhalt!='')
+		{
+			document.getElementById('inhalt').value=temp_inhalt;
+			temp_inhalt='';
+		}
+		else
+		{
+			temp_inhalt=document.getElementById('inhalt').value;
+			new Ajax.Request('../chatgpt_translate.php?to=German&from=German&text='+encodeURIComponent(temp_inhalt), {
+			  encoding: 'ISO-8859-1',onComplete: function(transport){
+				if (200 == transport.status)
+				{
+					document.getElementById('inhalt').value=transport.responseText;
+				}
+				}
+			});
+		}
+	}
+
+	//--></script>
+</div><br/><br/><br/><div id="interna" style="position:fixed;bottom:0px;width:100%;z-index:5000;">
+<div id="interna_head" onclick="interna();" onmouseout="this.style.cursor='default'" onmouseover="this.style.cursor='pointer'" style="width:100%;color:#ffffff;background:#000000;text-align:center;font-weight:bold;">Team interne Infos</div>
+<div id="interna_body" style="display:none;width:100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td style="text-align:center;font-weight:bold;color:#999999;background:#000000;">Mein privater Schmierzettel</td>
+<td style="text-align:center;font-weight:bold;color:#999999;background:#000000;">Interner Animateurchat</td>
+</tr>
+<tr>
+<td><form action="" id="ag_mem" method="post" name="ag_mem"><input name="wat" type="hidden" value="memochange"/><textarea name="agent_memo" onchange="send('ag_mem','ajax_stammdaten')" style="width:100%;height:200px;background:#ffff99;color:#000055;font-family:arial;font-size:11px;padding:0px;"></textarea></form></td>
+<td style="width:350px;height:180px;">
+<table border="0" cellpadding="0" cellspacing="0" style="width:350px;height:180px;">
+<tr>
+<td width="300"><div id="chat" style="font-size:8px;background:#ffffff;height:180px;width:100%;position:relative;overflow-x: hidden; overflow-y:auto;"></div></td>
+<td width="50"><div id="user" style="font-size:8px;background:#ffffff;height:180px;width:100%;position:relative;overflow-x: hidden; overflow-y:auto;"></div></td>
+</tr>
+</table>
+<form action="" id="meinchat" method="post" name="meinchat" onsubmit="return sendchat('meinchat');">
+<input name="wat" type="hidden" value="senden"/>
+<table border="0" cellpadding="0" cellspacing="0" width="350">
+<tr>
+<td style="width:300px;text-align:center;"><input id="cinhalt" name="cinhalt" style="padding:0px;width:300px;height:16px;" type="text"/></td>
+<td style="width:50px;text-align:right;"><input style="width:45px;height:16px;" type="submit" value="Senden"/></td>
+</tr>
+</table></form>
+</td></tr></table>
+</div></div>
+<script type="text/javascript">
+
+
+function interna()
+{
+	if(document.getElementById('interna_body').style.display=='none')
+	{
+		document.getElementById('interna_body').style.display='block';
+		document.getElementById('interna_head').innerHTML='Internes verbergen';
+	}
+	else
+	{
+		document.getElementById('interna_body').style.display='none';
+		document.getElementById('interna_head').innerHTML='Internes anzeigen';
+	}
+}
+
+
+
+chatid='';
+zz=0;
+onlineuser='';
+
+farbe=new Array('#ffffff','#eeeeee');
+function send(fformular,wo)
+{
+	document.getElementById(fformular).style.display='none';
+	var pars = $(fformular).serialize();
+	new Ajax.Request(
+		wo+'.php', 
+		{
+		method: 'post',
+		encoding: 'ISO-8859-1',		
+		parameters: pars, 
+		onFailure: function(transport){alert('fail connection')},
+		onComplete: function(transport){document.getElementById(fformular).style.display='block';}
+		})
+	return false;
+}
+
+function sendchat(fformular)
+{
+	var pars = $(fformular).serialize();
+	new Ajax.Request(
+		'ajax_chat.php', 
+		{
+		method: 'post',
+		encoding: 'ISO-8859-1',		
+		parameters: pars, 
+		onFailure: function(transport){alert('fail connection')}
+		})
+	document.getElementById('cinhalt').value="";
+	document.getElementById('cinhalt').focus();
+	return false;
+}
+
+
+function ticker()
+{
+new Ajax.Request('ajax_chat.php?id='+chatid, {
+  encoding: 'ISO-8859-1',onComplete: function(transport){
+    if (200 == transport.status)zeilen=transport.responseText.split("\n");
+	  
+		if(transport.responseText=='!systemkick!'){window.location.href='logout.php';return;}
+		
+		if(onlineuser!=zeilen[1])
+		{
+			us='';
+			onlineuser=zeilen[1];
+			ss=zeilen[1].split('|');
+			for(i=0;i<ss.length;i++)
+			{
+				if(ss[i]!='')
+				{
+					us+=ss[i]+'<br />';
+				}
+			}
+			document.getElementById('user').innerHTML=us;
+		}
+	  
+		if(chatid!=zeilen[0])
+		{
+			chatid=zeilen[0];
+			for(i=2;i<zeilen.length;i++)
+			{
+				if(zeilen[i]!="")
+				{
+					spalten=zeilen[i].split("|");
+					zz++;
+					document.getElementById('chat').innerHTML+="<table cellpadding='0' cellspacing='0' style='width:290px;background:" + farbe[zz%2] + "'><tr><td style='width:50px;text-align:right;font-size:9px;' valign='top'><b>"+spalten[0]+ "</b><br /><span style='font-size:8px;color:#333333'><i>" + spalten[1] + "</i></span></td><td>&nbsp;</td><td style='width:230px;text-align:left;font-size:9px;' valign='top'>" + spalten[2] + "</td></tr></table>"; //+document.getElementById('chat').innerHTML;
+				}
+			}
+			//document.getElementById('chat').innerHTML+="<a href='#' id='cen'></a>";
+			document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+		}
+	}
+});
+window.setTimeout("ticker()", 5000);
+}
+
+
+ticker();
+
+</script>
+</center></body></html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>Chatcenter</title>
+<link rel="stylesheet" type="text/css" href="lightbox.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="styles.css" />
+<script type='text/javascript' src='../js/prototype.js'></script>
+<script type='text/javascript' src='../js/scriptaculous.js?load=effects,builder'></script>
+<script type='text/javascript' src='../js/lightbox.js'></script>
+</head><body style='background:#ffffff;'><center>
+
+<div id='LoadMessage' style='display:none;z-index:1000;' onclick="document.getElementById('message').style.display='none'; document.getElementById('error').style.display='none';	document.getElementById('LoadMessage').style.display='none';"></div>
+
+<div id='error' style='top:50%;left:50%;width:600px;margin-left:-300px;margin-top:-200px;z-index:1001;position:fixed;display:none;'>
+<table width='100%' cellpadding='0' cellspacing='0' border='0'>
+<tr><td>
+<table cellpadding='0' cellspacing='0' width='100%'><tr>
+<td width='9'><img src='https://momaily.de/pic/mes_r_ol.png' alt='' /></td>
+<td style='font-size:12px;font-weight:bold;color:#ffffff;height:14px;background-image:url(https://momaily.de/pic/mes_r_om.png);background-repeat:repeat-x;'>Fehlermeldung</td>
+<td width='9'><img src='https://momaily.de/pic/mes_r_or.png' alt='' /></td>
+</tr></table>
+</td></tr>
+<tr><td style='font-size:12px;color:#000000;background:#ffffff;border-left:1px solid #000000;border-right:1px solid #000000;padding:2px;'>
+<br /><div id='errormessage' style='text-align:center;'></div><br />
+<br /><center><input type='button' value='Fenster schließen' onclick="document.getElementById('error').style.display='none';	document.getElementById('LoadMessage').style.display='none';" /></center><br /><br />
+</td></tr>
+<tr><td>
+<table width='100%' cellpadding='0' cellspacing='0'><tr>
+<td width='8'><img src='https://momaily.de/pic/mes_ul.png' alt='' /></td>
+<td style='height:8px;background:#ffffff;border-bottom:1px #000000 solid;'><img src='https://momaily.de/pic/pixel.gif' alt='' /></td>
+<td width='8'><img src='https://momaily.de/pic/mes_ur.png' alt='' /></td>
+</tr></table>
+</td></tr>
+</table>
+</div>
+
+
+<div id='message' style='top:50%;left:50%;width:600px;margin-left:-300px;margin-top:-200px;z-index:1001;position:fixed;display:none;'>
+<table width='100%' cellpadding='0' cellspacing='0' border='0'>
+<tr><td>
+<table cellpadding='0' cellspacing='0' width='100%'><tr>
+<td style='width:9px;'><img width='9' src='https://momaily.de/pic/mes_b_ol.png' alt='' /></td>
+<td style='font-size:12px;font-weight:bold;color:#ffffff;height:14px;background-image:url(https://momaily.de/pic/mes_b_om.png);background-repeat:repeat-x;'>Info</td>
+<td style='width:9px;'><img width='9' src='https://momaily.de/pic/mes_b_or.png' alt='' /></td>
+</tr></table>
+</td></tr>
+<tr><td style='font-size:12px;color:#000000;background:#ffffff;border-left:1px solid #000000;border-right:1px solid #000000;padding:2px;'>
+<br /><div id='messagetext' style='text-align:center;'></div><br />
+<br /><center><input type='button' value='Fenster schließen' onclick="document.getElementById('message').style.display='none';	document.getElementById('LoadMessage').style.display='none';" /></center><br /><br />
+</td></tr>
+<tr><td>
+<table width='100%' cellpadding='0' cellspacing='0' border='0'><tr>
+<td width='8'><img src='https://momaily.de/pic/mes_ul.png' alt='' /></td>
+<td style='height:8px;background:#ffffff;border-bottom:1px #000000 solid;'><img src='https://momaily.de/pic/pixel.gif' alt='' /></td>
+<td width='8'><img src='https://momaily.de/pic/mes_ur.png' alt='' /></td>
+</tr></table>
+</td></tr>
+</table>
+</div>
+
+<div id='nnavleiste' style='font-size:12px;text-align:left;position:relative;width:100%;padding-top:2px;padding-bottom:2px;background:#000000;color:#ffffff;font-weight:bold;'><select style='border:0;padding:0;margin:0;color:#aaa;background:#333;font-size:10px;' onchange="window.location.href='?anilang='+this.value">
+	<option value='de' selected='selected' >DE</option>
+	<option value='en'>EN</option>
+	</select>&nbsp;&nbsp;<a class='admein' href='old_c.php'>wechsel zum Team</a> | <a class='admein' href='c.php'>Home</a> | <a class='admein' href='view_favoriten.php'>Favoriten</a> | <a class='admein' href='new_user.php'>Fake erstl.</a> | 
+		<a class='admein' href='view_meineprofile.php'>Meine Fakes</a> | 
+		<a class='admein' href='view_diafake.php'>Diafakes</a> | 
+		<a class='admein' href='view_meinekunden.php'>Meine Kunden</a> | 
+		<a class='admein' href='view_dialoge.php'>Aktive Dias</a> | 
+		<a class='admein' href='view_wartezimmer.php'>Wartezimmer</a> | <a class='admein' href='p_brett.php'>Schwarze Brett</a> | <a class='admein' href='p_ticket.php'>Tickets</a> | 
+	<a class='admein' href='einstellungen.php'>Einstellungen</a> | 
+	<a class='admein' href='logout.php'>Logout</a>
+	<span style='float:right;color:#ff9900;font-weight:normal;font-size:12px;'><b>Coins</b> <span style='font-size:9px;'>(16:07)</span>: <a class='admein' href='view_umsatz2.php'>176 | 2041</a> </span></div><!-- div id='msgplay' style='width:0px;height:0px;position:absolute;'></div -->
+	<audio id='msgplay'><source id='msgplay_src' src='../slot/d1.mp3' type='audio/mpeg'></audio>
+	<div id='npm' style='display:none;z-index:50;width:400px;height:100px;position:fixed;bottom:0px;right:0px;background:#ffffff;border:4px #008800 solid;border-radius:10px;'></div>
+	<script type='text/javascript'><!--
+	function msgsound(filename)
+	{
+		document.getElementById('msgplay_src').src = '../slot/'+filename;
+		document.getElementById('msgplay').load();
+		document.getElementById('msgplay').play();
+	}
+
+	var msgnewid=0;
+
+	function msgchecknew()
+	{
+		new Ajax.Request('ajax_sound.php?id='+msgnewid,{
+		method: 'get',
+		onSuccess: function(transport){
+		jdskhfds=transport.responseText.split('|');
+			if (jdskhfds[0].match(/success/))
+			{
+				if((jdskhfds[1]*1)==1 && msgnewid==0)
+				{
+					msgsound('d1.mp3');
+					//document.getElementById('npm').innerHTML="<table onclick=\"window.location.href='postfach.php?action=read&id="+jdskhfds[4]+"'\" onmouseover=\"this.style.cursor='pointer'\" onmouseout=\"this.style.cursor='pointer'\" width='100%'><tr><td width='100'><img src='"+jdskhfds[3]+"' alt='' style='border-radius:5px;width:95px;height:95px;'/></td><td><span class='titel s18'>Du hast Post von<br /><br />"+jdskhfds[2]+"</span></td></tr></table>";
+					document.getElementById('npm').innerHTML="<div onmouseover=\"this.style.cursor='pointer'\" onmouseout=\"this.style.cursor='default'\" onclick=\"window.location.href='"+jdskhfds[3]+"'\" style='width:200px;height:50px;border-radius:10px;border:#990000 2px solid;font-size:18px;color:#ffffff;background:#ee5500;'><b>POWERCHAT</b><br /><span style='font-size:11px;'>("+jdskhfds[2]+")</span></div>";
+					document.getElementById('npm').style.display='block';
+					msgnewid=1;
+				}
+			}
+			if(msgnewid==0)window.setTimeout('msgchecknew()',30000);
+		}
+		});
+	}
+	window.setTimeout('msgchecknew()',60000);
+	//--></script><div id='f1' style='position:relative;width:100%;'><center><br /><div onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'" onclick="window.location.href='p_postfach.php?p=1095672&amp;id=861543&amp;action=read&amp;h=a2f1a424e95be74b0a9d309a70cc1709'" style='width:400px;height:100px;border-radius:20px;border:#004400 2px solid;font-size:28px;color:#ffffff;background:#009900;'><b>POWERCHAT 1:1</b><br />Message</div><br /><br /></center><center><span class='titel s18'>Meine Produktivität</span><br /><br />
+<div class="box padding10"><table style='width:900px;'><tr><td>
+<center>Du bist seit 3h 36Min eingeloggt und hast 12857 Outs generiert..<br />Deine Produktivität entspricht:<br />
+<br /><span style='font-size:28px;color:#cccccc;font-weight:bold;'>5946 %</span><br />1 sek pro PM</center>	
+</td></tr></table></div></center><br /><br /><center><span class='titel s18'>Chat response time</span><br /><br />
+<div class="box padding10"><table cellpadding='2' cellspacing='0' style='width:600px;'>
+<tr style='background:#cccccc;'>
+<td style='width:50px;text-align:right;'><b>Actions</b></td>
+<td style='width:50px;text-align:right;'><b>Zeit</b></td>
+<td>&nbsp;</td>
+</tr><tr>
+<td style='text-align:right;'>0</td>
+<td style='text-align:right;'>0Sek</td>
+<td style='text-align:left;'><div style='position:relative;width:0px;background:#008800;height:10px;'></div></td>
+</tr></table></div></center><br /><br /><center><table style='width:250px;border:1px #000000 solid;background-color:#dddddd;border-radius:5px;'>
+<tr><td><b>Meine offenen Dialoge</b></td><td style='text-align:right;'>3</td></tr>
+<tr><td><b>offene ASA</b></td><td style='text-align:right;'>2</td></tr>
+<tr><td><b>Wartezimmer</b></td><td style='text-align:right;'>0</td></tr>
+</table></center><br /><br><center><span class='titel s18'>Meine Animationsprofile</span><br /><br />
+	<table cellpadding='0' cellspacing='0' style='width:900px;'>
+	<tr style='background:#cccccc;'>
+	<td style='width:40px;text-align:center;'><b>Bild</b></td>
+	<td style='width:140px;text-align:left;'><b>Fake</b></td>
+	<td style='width:50px;text-align:right;'><b>PM<br />IN</b></td>
+	<td style='width:50px;text-align:right;'><b>PM<br />OUT</b></td>
+	<td style='width:70px;text-align:right;'><b>PLZ</b></td>
+	<td style='width:50px;text-align:right;'><b>Seit</b></td>
+	<td style='width:50px;text-align:right;'><b>Partner</b></td>
+	<td style='width:50px;text-align:right;'><b>Letzt. 30</b></td>
+	<td style='width:50px;text-align:right;'><b>Offen</b></td>
+	<td style='text-align:right;'><b>Zuletzt</b></td>
+	</tr><tr style='background:#ffffff' onmouseover="this.style.background='#dddddd';this.style.cursor='pointer';" onmouseout="this.style.background='#ffffff';this.style.cursor='default';" onclick="window.location.href='p_index.php?p=1094844';" >
+		<td style='text-align:center;'><img src='https://momaily.de/profilbilder/1094844/6dc8b4575fed109c377d50b2ce616e97_140.jpg' alt='' width='40' /></td>
+		<td style='text-align:left;color:#ff55aa'><b>Suissy (28)</b></td>
+		<td style='text-align:right;'>36</td>
+		<td style='text-align:right;'>39</td>
+		<td style='text-align:right;'><img src='https://momaily.de/pic/fahne_105.gif' alt='' /> 40789</td>
+		<td style='text-align:right;'>34</td>
+		<td style='text-align:right;'>454</td>
+		<td style='text-align:right;'>224</td>
+		<td style='text-align:right;'>1</td>
+		<td style='text-align:right;'>2025-05-07 13:44:59</td>
+		</tr><tr style='background:#eeeeee' onmouseover="this.style.background='#dddddd';this.style.cursor='pointer';" onmouseout="this.style.background='#eeeeee';this.style.cursor='default';" onclick="window.location.href='p_index.php?p=1095672';" >
+		<td style='text-align:center;'><img src='https://momaily.de/profilbilder/1095672/00123fac1d176e5ed0ce484ca95b0500_140.jpg' alt='' width='40' /></td>
+		<td style='text-align:left;color:#ff55aa'><b>lauramuster (25)</b></td>
+		<td style='text-align:right;'>1</td>
+		<td style='text-align:right;'>2</td>
+		<td style='text-align:right;'><img src='https://momaily.de/pic/fahne_eu.gif' alt='' /> ??</td>
+		<td style='text-align:right;'>15</td>
+		<td style='text-align:right;'>3147</td>
+		<td style='text-align:right;'>3147</td>
+		<td style='text-align:right;'>1</td>
+		<td style='text-align:right;'>2025-05-07 16:04:43</td>
+		</tr><tr style='background:#ffffff' onmouseover="this.style.background='#dddddd';this.style.cursor='pointer';" onmouseout="this.style.background='#ffffff';this.style.cursor='default';" onclick="window.location.href='p_index.php?p=1095594';" >
+		<td style='text-align:center;'><img src='https://momaily.de/profilbilder/1095594/bbdeeb5964727de37f8a02a81aa3b145_140.jpg' alt='' width='40' /></td>
+		<td style='text-align:left;color:#ff55aa'><b>norakraftt (24)</b></td>
+		<td style='text-align:right;'>4</td>
+		<td style='text-align:right;'>4</td>
+		<td style='text-align:right;'><img src='https://momaily.de/pic/fahne_eu.gif' alt='' /> ??</td>
+		<td style='text-align:right;'>16</td>
+		<td style='text-align:right;'>3146</td>
+		<td style='text-align:right;'>3146</td>
+		<td style='text-align:right;'>1</td>
+		<td style='text-align:right;'>2025-05-07 16:03:46</td>
+		</tr></table><br /><br /></center><style>
+				@keyframes glow {
+					to {text-shadow: 0 0 20px red;}
+				};
+				</style>
+				<center><span id='' class='titel s28' style='transition: text-shadow 1s linear;
+				color:#800;font-size:48px;animation: glow .5s infinite alternate;'>SEX PIC's</span><br />
+				<br />
+				Diese Kunden haben ein Sexbild zum Verkauf rein gesetzt!<br />Indem du es nun anklickst kaufst du das Bild.<br />Schreib den Kunden also auch wegen diesem Bild an!<br /><br />
+				<table cellpadding='0' cellspacing='0' style='width:900px;margin:0 auto;'>
+				<tr style='background:#cccccc;'>
+				<td style='width:40px;text-align:center;'><b>Bild</b></td>
+				<td style='width:140px;text-align:left;'><b>Nick</b></td>
+				<td style='width:60px;text-align:right;'><b>Seit</b></td>
+				<td style='width:60px;text-align:right;'><b>SEX Pic</b></td>
+				<td style='text-align:right;'><b>Meine Fakes</b></td>
+				</tr><tr style='background:#ffffff'>
+					<td style='text-align:center;'><img src='https://momaily.de/profilbilder/956405/dcf3f9612132a1ee55789e96872a7f3b_140.jpg' alt='' width='40' /></td>
+					<td style='text-align:left;color:#204080'><b>Ghostbusters68 (57)</b></td>
+					<td style='text-align:right;'>1687</td>
+					<td style='text-align:center;'><img src='https://momaily.de/profilbilder/956405/6c7d1cead8352e4d679f4a9701a2acc7_140.jpg' alt='' style='width:50px;' /></td>
+					<td style='text-align:right;'><b>Du hast kein passendes Profil in seinem Werbebereich!</b></td>
+					</tr></table><br /><br /></center></div><br /><br /><br /><div id='interna' style='position:fixed;bottom:0px;width:100%;z-index:5000;'>
+<div id='interna_head' style='width:100%;color:#ffffff;background:#000000;text-align:center;font-weight:bold;' onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'" onclick="interna();">Team interne Infos</div>
+<div id='interna_body' style='display:none;width:100%'><table border='0' width='100%' cellpadding='0' cellspacing='0'>
+<tr>
+<td style='text-align:center;font-weight:bold;color:#999999;background:#000000;'>Mein privater Schmierzettel</td>
+<td style='text-align:center;font-weight:bold;color:#999999;background:#000000;'>Interner Animateurchat</td>
+</tr>
+<tr>
+<td><form name='ag_mem' id='ag_mem' action='' method='post'><input type='hidden' name='wat' value='memochange' /><textarea style='width:100%;height:200px;background:#ffff99;color:#000055;font-family:arial;font-size:11px;padding:0px;' onchange="send('ag_mem','ajax_stammdaten')" name='agent_memo'></textarea></form></td>
+<td style='width:350px;height:180px;'>
+<table border="0" style="width:350px;height:180px;" cellpadding="0" cellspacing="0">
+<tr>
+<td width="300"><div id="chat" style="font-size:8px;background:#ffffff;height:180px;width:100%;position:relative;overflow-x: hidden; overflow-y:auto;"></div></td>
+<td width="50"><div id="user" style="font-size:8px;background:#ffffff;height:180px;width:100%;position:relative;overflow-x: hidden; overflow-y:auto;"></div></td>
+</tr>
+</table>
+
+<form action='' method='post' name='meinchat' id='meinchat' onsubmit="return sendchat('meinchat');">
+<input type="hidden" name="wat" value="senden" />
+<table border='0' width="350" cellpadding="0" cellspacing="0">
+<tr>
+<td style='width:300px;text-align:center;'><input type="text" id="cinhalt" name="cinhalt" style="padding:0px;width:300px;height:16px;" /></td>
+<td style='width:50px;text-align:right;'><input type="submit" value="Senden" style="width:45px;height:16px;" /></td>
+</tr>
+</table></form>
+</td></tr></table>
+</div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+function interna()
+{
+	if(document.getElementById('interna_body').style.display=='none')
+	{
+		document.getElementById('interna_body').style.display='block';
+		document.getElementById('interna_head').innerHTML='Internes verbergen';
+	}
+	else
+	{
+		document.getElementById('interna_body').style.display='none';
+		document.getElementById('interna_head').innerHTML='Internes anzeigen';
+	}
+}
+
+
+
+chatid='';
+zz=0;
+onlineuser='';
+
+farbe=new Array('#ffffff','#eeeeee');
+function send(fformular,wo)
+{
+	document.getElementById(fformular).style.display='none';
+	var pars = $(fformular).serialize();
+	new Ajax.Request(
+		wo+'.php', 
+		{
+		method: 'post',
+		encoding: 'ISO-8859-1',		
+		parameters: pars, 
+		onFailure: function(transport){alert('fail connection')},
+		onComplete: function(transport){document.getElementById(fformular).style.display='block';}
+		})
+	return false;
+}
+
+function sendchat(fformular)
+{
+	var pars = $(fformular).serialize();
+	new Ajax.Request(
+		'ajax_chat.php', 
+		{
+		method: 'post',
+		encoding: 'ISO-8859-1',		
+		parameters: pars, 
+		onFailure: function(transport){alert('fail connection')}
+		})
+	document.getElementById('cinhalt').value="";
+	document.getElementById('cinhalt').focus();
+	return false;
+}
+
+
+function ticker()
+{
+new Ajax.Request('ajax_chat.php?id='+chatid, {
+  encoding: 'ISO-8859-1',onComplete: function(transport){
+    if (200 == transport.status)zeilen=transport.responseText.split("\n");
+	  
+		if(transport.responseText=='!systemkick!'){window.location.href='logout.php';return;}
+		
+		if(onlineuser!=zeilen[1])
+		{
+			us='';
+			onlineuser=zeilen[1];
+			ss=zeilen[1].split('|');
+			for(i=0;i<ss.length;i++)
+			{
+				if(ss[i]!='')
+				{
+					us+=ss[i]+'<br />';
+				}
+			}
+			document.getElementById('user').innerHTML=us;
+		}
+	  
+		if(chatid!=zeilen[0])
+		{
+			chatid=zeilen[0];
+			for(i=2;i<zeilen.length;i++)
+			{
+				if(zeilen[i]!="")
+				{
+					spalten=zeilen[i].split("|");
+					zz++;
+					document.getElementById('chat').innerHTML+="<table cellpadding='0' cellspacing='0' style='width:290px;background:" + farbe[zz%2] + "'><tr><td style='width:50px;text-align:right;font-size:9px;' valign='top'><b>"+spalten[0]+ "</b><br /><span style='font-size:8px;color:#333333'><i>" + spalten[1] + "</i></span></td><td>&nbsp;</td><td style='width:230px;text-align:left;font-size:9px;' valign='top'>" + spalten[2] + "</td></tr></table>"; //+document.getElementById('chat').innerHTML;
+				}
+			}
+			//document.getElementById('chat').innerHTML+="<a href='#' id='cen'></a>";
+			document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+		}
+	}
+});
+window.setTimeout("ticker()", 5000);
+}
+
+
+ticker();
+
+</script>
+</center><script type='text/javascript'>
+	document.getElementById('LoadMessage').style.display='block';
+	document.getElementById('error').style.display='block';
+	document.getElementById('errormessage').innerHTML='Dieses Animationsprofil ist nicht mehr vorhanden! (ID: )!';
+	</script></body></html>
