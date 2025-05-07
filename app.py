@@ -61,7 +61,7 @@ class Project(db.Model):
 # Günlük istatistik modeli
 class DailyStats(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # 'user' yerine 'users' kullan
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
     date = db.Column(db.Date, nullable=False)
     message_count = db.Column(db.Integer, default=0)
@@ -125,7 +125,7 @@ class User(UserMixin, db.Model):
 # Chat mesaj modeli
 class ChatMessage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # 'user' yerine 'users' kullan
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
     text = db.Column(db.Text, nullable=False)
     is_user = db.Column(db.Boolean, default=True)  # True: kullanıcı mesajı, False: bot mesajı
@@ -1847,7 +1847,7 @@ def profile_edit(project):
 # Profil bilgileri modeli (her müşteri-fake/proje için)
 class ProfileInfo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # 'user' yerine 'users' kullan
     project = db.Column(db.String(50), nullable=False)
     p = db.Column(db.String(50), nullable=False)  # fake id
     id_ = db.Column(db.String(50), nullable=False)  # müşteri id
@@ -1864,7 +1864,7 @@ class ProfileInfo(db.Model):
 # Dialog Info modeli (her müşteri-fake/proje için notlar)
 class DialogInfo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # 'user' yerine 'users' kullan
     project = db.Column(db.String(50), nullable=False)
     p = db.Column(db.String(50), nullable=False)
     id_ = db.Column(db.String(50), nullable=False)
@@ -1921,7 +1921,7 @@ def save_dialoginfo():
 # Kullanıcıya özel takvim etkinlikleri modeli
 class UserCalendarEvent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # 'user' yerine 'users' kullan
     event_date = db.Column(db.Date, nullable=False)
     note = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=dt.now)
@@ -2001,7 +2001,7 @@ def get_todays_calendar_events(user_id):
 
 class UserSession(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # 'user' yerine 'users' kullan
     project = db.Column(db.String(50), nullable=False)  # 'momaily', 'liebesfun', 'beloops'
     phpessid = db.Column(db.String(255), nullable=False)
     is_active = db.Column(db.Boolean, default=True)
@@ -2128,7 +2128,7 @@ def api_message_counts():
 
 class DailyCoinStats(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     date = db.Column(db.Date, nullable=False)
     coins = db.Column(db.Integer, default=0)
     messages = db.Column(db.Integer, default=0)
@@ -2529,7 +2529,7 @@ def fetch_liebesfun_coins():
 
 class UserProjectSession(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # 'user' yerine 'users' kullan
     project = db.Column(db.String(50), nullable=False)  # 'momaily', 'liebesfun', 'beloops'
     phpessid = db.Column(db.String(255), nullable=False)
     moderator_name = db.Column(db.String(120), nullable=True)  # Yeni eklendi
