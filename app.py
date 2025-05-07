@@ -2953,6 +2953,41 @@ def beloops_admin_session():
             return redirect(url_for('beloops_admin_session'))
     return render_template('admin_beloops_admin_session.html', session=session)
 
+# --- Yönetici kullanıcı ekleme komutu ---
+@app.cli.command('create-admin')
+def create_admin():
+    """Admin kullanıcısı oluşturur: flask create-admin"""
+    from werkzeug.security import generate_password_hash
+    username = 'admin'
+    password = 'admin123'
+    email = 'admin@example.com'
+    if User.query.filter_by(username=username).first():
+        print('Admin kullanıcısı zaten var!')
+        return
+    admin = User(username=username, is_admin=True, email=email)
+    admin.password_hash = generate_password_hash(password)
+    db.session.add(admin)
+    db.session.commit()
+    print('Admin kullanıcı başarıyla oluşturuldu!')
+
+def ensure_admin_user():
+    from werkzeug.security import generate_password_hash
+    username = 'admin'
+    password = 'admin123'
+    email = 'admin@example.com'
+    if not User.query.filter_by(username=username).first():
+        admin = User(username=username, is_admin=True, email=email)
+        admin.password_hash = generate_password_hash(password)
+        db.session.add(admin)
+        db.session.commit()
+        print('Admin kullanıcı otomatik olarak oluşturuldu!')
+    else:
+        print('Admin kullanıcısı zaten var.')
+
+@app.before_first_request
+def before_first_request_func():
+    ensure_admin_user()
+
 if __name__ == '__main__':
     init_db()
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000))) 
