@@ -19,9 +19,11 @@ from zoneinfo import ZoneInfo
 from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor
 import shutil
-import datetime
-from datetime import datetime as dt
-from apscheduler.schedulers.background import BackgroundScheduler
+import logging
+
+# Logging ayarları
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-here')
@@ -43,13 +45,16 @@ login_manager.login_view = 'login'
 def init_db():
     with app.app_context():
         try:
-            db.create_all()
-            print("Veritabanı tabloları başarıyla oluşturuldu!")
+            db.drop_all()   # Tüm tabloları sil
+            db.create_all() # Tüm tabloları yeniden oluştur
+            print("Veritabanı tabloları başarıyla sıfırlandı ve oluşturuldu!")
         except Exception as e:
             print(f"Veritabanı tabloları oluşturulurken hata: {str(e)}")
 
 # Uygulama başlatıldığında veritabanını oluştur
-init_db()
+@app.before_first_request
+def before_first_request():
+    init_db()
 
 # Proje modeli
 class Project(db.Model):
