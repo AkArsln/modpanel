@@ -25,16 +25,31 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-here')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///app.db')
+
+# PostgreSQL URL'sini düzelt
+database_url = os.environ.get('DATABASE_URL', 'sqlite:///app.db')
+if database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 # Veritabanı tablolarını oluştur
-with app.app_context():
-    db.create_all()
+def init_db():
+    with app.app_context():
+        try:
+            db.create_all()
+            print("Veritabanı tabloları başarıyla oluşturuldu!")
+        except Exception as e:
+            print(f"Veritabanı tabloları oluşturulurken hata: {str(e)}")
+
+# Uygulama başlatıldığında veritabanını oluştur
+init_db()
 
 # Proje modeli
 class Project(db.Model):
