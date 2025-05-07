@@ -20,6 +20,7 @@ from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor
 import shutil
 import logging
+from datetime import datetime as dt
 
 # Logging ayarları
 logging.basicConfig(level=logging.INFO)
