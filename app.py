@@ -21,6 +21,7 @@ from concurrent.futures import ThreadPoolExecutor
 import shutil
 import logging
 from datetime import datetime as dt
+from flask_migrate import Migrate
 
 # Logging ayarları
 logging.basicConfig(level=logging.INFO)
@@ -42,17 +43,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-# Veritabanı tablolarını oluştur
-def init_db():
-    with app.app_context():
-        try:
-            db.drop_all()   # Tüm tabloları sil
-            db.create_all() # Tüm tabloları yeniden oluştur
-            print("Veritabanı tabloları başarıyla sıfırlandı ve oluşturuldu!")
-        except Exception as e:
-            print(f"Veritabanı tabloları oluşturulurken hata: {str(e)}")
-
-init_db()  # <-- Bunu burada çağır!
+migrate = Migrate(app, db)
 
 # Proje modeli
 class Project(db.Model):
